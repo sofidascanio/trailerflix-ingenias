@@ -4,6 +4,16 @@ const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
+const { authenticate, closeConnection } = require('./src/mysql.js');
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    res.header("Content-Type", "application/json; charset=utf-8");
+    next();
+});
+
 // GET /
 app.get('/', (req, res) => {
     res.status(200).end("Hola Mundo");
