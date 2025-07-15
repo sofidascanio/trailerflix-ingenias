@@ -1,5 +1,5 @@
 # Trailerflix
-## Segunda Pre-entrega 
+## Entrega Final
 ### Grupo 13
 ------
 #### Integrantes
@@ -21,10 +21,10 @@
 #### Archivo `.env`
 Necesario para la conexión a la Base de Datos.
 ```
-PORT= **Puerto para usar**
+PORT= Puerto para usar
 
-DB_NAME= **Nombre de la Base de Datos**
-DB_USER= **Nombre de Usuario de MySQL**
-DB_PASS= **Contraseña de MySQL**
+DB_NAME= Nombre de la Base de Datos
+DB_USER= Nombre de Usuario de MySQL
+DB_PASS= Contraseña de MySQL
 ```
 
