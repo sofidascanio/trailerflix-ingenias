@@ -23,6 +23,7 @@ Necesario para la conexión a la Base de Datos.
 ```
 PORT= Puerto para usar
 
+DB_HOST= host
 DB_NAME= Nombre de la Base de Datos
 DB_USER= Nombre de Usuario de MySQL
 DB_PASS= Contraseña de MySQL
