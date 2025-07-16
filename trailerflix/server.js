@@ -4,7 +4,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
+// RUTAS
+const peliculas = require("./src/routes/peliculas.js");
+app.use("/peliculas", peliculas);
+
+// CONEXION BD
 const { authenticate, closeConnection } = require('./src/mysql.js');
+
+// MODELOS
+const Categoria = require('./src/models/categoria.js');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
