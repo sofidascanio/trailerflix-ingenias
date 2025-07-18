@@ -5,7 +5,7 @@ const router = express.Router();
 
 // ruta principal
 router.get("/", (req, res) => {
-  res.send("Prueba de routes/peliculas.js a server.js");
+  res.send("Prueba de routes/prueba.js a server.js");
 });
 
 router.get('/categorias', async (req, res) => {
