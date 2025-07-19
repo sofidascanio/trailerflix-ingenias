@@ -1,13 +1,13 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 const Categoria = sequelize.define('Categoria', {
-    CategoriaID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
-    NombreCategoria: {
-        type: DataTypes.STRING(45), allowNull: false
+    nombreCategoria: {
+        type: DataTypes.STRING(100), allowNull: false
     },
     },
     {

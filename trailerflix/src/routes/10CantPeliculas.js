@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const Categoria = require('../models/categoria.js');
+
 // GET /cantidad_peliculas
 router.get('/', async (req, res) => {
    // 10. Contar la cantidad total de películas registradas.
 
-   // Titulo -> Categoria (Pelicula)
+   // Categoria (Pelicula)
 });
 
 module.exports = router;

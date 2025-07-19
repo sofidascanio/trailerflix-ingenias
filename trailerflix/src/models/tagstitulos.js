@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 const TagsTitulos = sequelize.define('TagsTitulos', {
-    TagsTitulosID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },

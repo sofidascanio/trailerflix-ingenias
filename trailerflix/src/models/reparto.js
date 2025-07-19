@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 const Reparto = sequelize.define('Reparto', {
-    RepartoID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
@@ -12,10 +12,29 @@ const Reparto = sequelize.define('Reparto', {
     idActor: {
         type: DataTypes.INTEGER, defaultValue: null
     },
+    // idTitulo: {
+    //     type: DataTypes.INTEGER,
+    //         references: {
+    //         model: Titulo, 
+    //         key: 'id',
+    //         defaultValue: null,
+    //     },
+    // },
+    // idActor: {
+    //     type: DataTypes.INTEGER,
+    //         references: {
+    //         model: Titulo,
+    //         key: 'id',
+    //         defaultValue: null,
+    //     },
+    // },
     },
     {
         tableName: 'Reparto',
         timestamps: false,
 });
+
+// Titulo.belongsToMany(Actor, { through: Reparto });
+// Actor.belongsToMany(Titulo, { through: Reparto });
 
 module.exports = Reparto

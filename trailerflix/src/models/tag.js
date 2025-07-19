@@ -1,10 +1,13 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 const Tag = sequelize.define('Tag', {
-    TagID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
+    },
+    nombreTag: {
+        type: DataTypes.STRING(100), allowNull: false
     },
     },
     {

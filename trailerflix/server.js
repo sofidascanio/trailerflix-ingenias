@@ -16,14 +16,15 @@ app.use((req, res, next) => {
 const { authenticate, closeConnection } = require('./src/mysql.js');
 
 // Modelos
-const Actor = require('./src/models/actor.js');
-const Categoria = require('./src/models/categoria.js');
-const Genero = require('./src/models/genero.js');
-const Ranking = require('./src/models/ranking.js');
-const Reparto = require('./src/models/reparto.js');
-const Tag = require('./src/models/tag.js');
-const TagsTitulos = require('./src/models/tagstitulos.js');
-const Titulo = require('./src/models/Titulo.js');
+// Se llaman desde cada archivo de endpoint que lo usa
+// const Actor = require('./src/models/actor.js');
+// const Categoria = require('./src/models/categoria.js');
+// const Genero = require('./src/models/genero.js');
+// const Ranking = require('./src/models/ranking.js');
+// const Reparto = require('./src/models/reparto.js');
+// const Tag = require('./src/models/tag.js');
+// const TagsTitulos = require('./src/models/tagstitulos.js');
+// const Titulo = require('./src/models/titulo.js');
 
 // Rutas
 const prueba = require("./src/routes/prueba.js");

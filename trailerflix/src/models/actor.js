@@ -1,11 +1,14 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 // nombre tabla? 
 const Actor = sequelize.define('Actor', {
-    ActorID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
+    },
+    nombreCompleto: {
+        type: DataTypes.STRING(255), allowNull: false
     },
     },
     {

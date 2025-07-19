@@ -1,13 +1,13 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
 const Genero = sequelize.define('Genero', {
-    GeneroID: {
+    id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
-    NombreGenero: {
-        type: DataTypes.STRING(45), allowNull: false
+    nombreGenero: {
+        type: DataTypes.STRING(100), allowNull: false
     },
     },
     {

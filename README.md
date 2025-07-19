@@ -35,6 +35,9 @@ DB_NAME= Nombre de la Base de Datos
 DB_USER= Nombre de Usuario de MySQL
 DB_PASS= Contraseña de MySQL
 ```
+-----------
+## Modelo Trailerflix
+![BD](./img/trailerflix_1.png)
 
 ---------
 ## Peticiones
