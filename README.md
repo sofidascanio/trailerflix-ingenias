@@ -5,9 +5,24 @@
 - [Integrantes](#integrantes)
 - [Para Iniciar Servidor](#para-iniciar-servidor)
 - [Dependencias](#dependencias)
+- [Archivo .env](#archivo-env)
 - [Peticiones](#peticiones)
-    - [Busqueda por Genero](#get-peliculas_generogenero)
-    - [Busqueda por Tags](#get-peliculas_tagstag)
+    - [Titulos](#titulos)
+        - [Listado de Titulos](#get-titulos)
+        - [Busqueda de Titulo](#get-titulosid)
+        - [Busqueda de Reparto por Titulo](#get-titulosrepartoid)
+        - [Listado de Series](#get-titulosseries)
+        - [Listado de Peliculas](#get-titulospeliculas)
+    - [Generos](#generos)
+        - [Listado de Generos](#get-generos)
+        - [Busqueda de Titulos por Genero](#get-generosid)
+    - [Actores](#actores)
+        - [Listado de Actores](#get-actores)
+        - [Busqueda de Actor](#get-actoresid)
+        - [Busqueda de Titulos por Actor](#get-actorestituloid)
+    - [Tags](#tags)
+        - [Listado de Tags](#get-tags)
+        - [Busqueda de Tags por Genero](#get-tagsid)
 
 ------
 #### Integrantes
@@ -43,43 +58,67 @@ DB_PASS= Contraseña de MySQL
 ## Peticiones
 | PETICIÓN | URL | DESCRIPCIÓN |
 |:--------:|-----|-------------|
-| GET | [/trailerflix](/) | Catalogo de Trailerflix |
-| GET | [/peliculas_genero/:genero](#get-peliculas_generogenero) | Listado de Peliculas por **Género** |
-| GET | [/peliculas_tags/:tag](#get-peliculas_tagstag) | Listado de Peliculas con Tags **"Aventura"** y: *"Ciencia Ficción"* o *"Fantasia"*|
-| GET | [/resumen_incluye_mision](/) | Listado de Titulos (Series/Peliculas) cuyo resumen contenga la palabra **"misión"** |
-| GET | [/series_tres_temporadas](/) | Listado de series con al menos *3 temporadas* |
-| GET | [/titulos_chris_pratt](/) | Cantidad de películas/series donde trabajó el actor *Chris Pratt*.|
-| GET | [/actores](/) | Listado de Actores/Actrices |
-| GET | [/peliculas](/) | Listado de Peliculas  |
-| GET | [/series](/) | Listado de Series |
-| GET | [/max_min_actores](/) | Titulo con **mayor** cantidad de actores y Titulo con **menor** cantidad de actores |
-| GET | [/cantidad_peliculas](/) | Cantidad de Peliculas registradas |
-| GET | [/cantidad_series](/) | Cantidad de Series registradas |
-| GET | [/series_orden_descendente](/) | Listado de series en orden descendente por cantidad de temporadas |
-| GET | [/fecha_lanzamiento_titulo](/) | ¿? campo fecha_lanzamiento agregado, mostrar listado | 
-| GET | [/palabra_clave_titulo/:palabra](#get-palabra_clave_titulopalabra) | Listado de Peliculas cuyo titulo o descripcion contengan **:palabra** |
-| GET | [/ranking](/) | Listado de Ranking de Peliculas y Series |
+| GET | [/titulos](/trailerflix-ingenias/trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
+| GET | [/titulos/:id](/trailerflix-ingenias/trailerflix/src/routes/titulos/getById.js) | Busqueda de titulo por *id* |
+| GET | [/titulos/reparto/:id](/trailerflix-ingenias/trailerflix/src/routes/titulos/getReparto.js) | Reparto de un titulo por su *id* |
+| GET | [/titulos/series](/trailerflix-ingenias/trailerflix/src/routes/titulos/getAllSeries.js) | Listado de **Series** |
+| GET | [/titulos/peliculas](/trailerflix-ingenias/trailerflix/src/routes/titulos/getPeliculas.js) | Listado de **Peliculas**|
+| GET | [/generos](/trailerflix-ingenias/trailerflix/src/routes/generos/getAll.js) | Listado de **Generos** disponibles|
+| GET | [/generos/:id](/trailerflix-ingenias/trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al genero indicado por *id* |
+| GET | [/actores](/trailerflix-ingenias/trailerflix/src/routes/actores/getAll.js) | Listado de **Actores/Actrices** |
+| GET | [/actores/:id](/trailerflix-ingenias/trailerflix/src/routes/actores/getById.js) | Busqueda de actor por *id*|
+| GET | [/actores/titulos/:id](/trailerflix-ingenias/trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el actor/actriz indicado por *id* |
+| GET | [/tags](/trailerflix-ingenias/trailerflix/src/routes/tags/getAll.js) | Listado de **Tags** disponibles |
+| GET | [/tags/:id](/trailerflix-ingenias/trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al tag indicado por *id* |
 
 -----------
-## GET `/peliculas_genero/:genero`
-**:genero** : Existen 10 generos en *trailerflix*
-* `cienciaficcion`: para buscar **"Ciencia Ficción"**
-* `drama`: para buscar **"Drama"**
-* `sucesoreal`: para buscar **"Suceso Real"**
-* `suspenso`: para buscar **"Suspenso"**
-* `comedia`: para buscar **"Comedia"**
-* `familia`: para buscar **"Familia"**
-* `terror`: para buscar **"Terror"**
-* `accion`: para buscar **"Acción"**
-* `aventura`: para buscar **"Aventura"**
-* `fantasia`: para buscar **"Fantasia"**
+## Titulos
+##### GET `/titulos`
+Devuelve el catalogo de trailerflix
 
 -----------------
-## GET `/peliculas_tags/:tag`
-En esta petición, *tag* puede tener dos valores: 
-* `cienciaficcion`: para buscar peliculas con el tag **"Ciencia Ficción"**
-* `fantasia`: para buscar peliculas con el tag **"Fantasia"**
-Esto devuelve un listado de peliculas con el tag **"Aventura"** y el tag indicado por parametro. 
+##### GET `/titulos/:id`
+Busqueda de un titulo indicado por *id*
 
 --------------------------
-## GET `/palabra_clave_titulo/:palabra`
+##### GET `/titulos/reparto/:id`
+Devuelve el reparto (todos los actores y actrices que trabajaron) de un titulo indicado por *id*
+
+-----------------------------
+##### GET `/titulos/series`
+Devuelve un listado de todas las series.
+
+-------------------------------
+##### GET `/titulos/peliculas`
+Devuelve un listado de todas las peliculas.
+
+---------------------------
+## Generos
+##### GET `/generos`
+Devuelve un listado con todos los generos disponibles en el modelo.
+
+---------------------------
+##### GET `/generos/:id`
+Devuelve un listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*
+
+---------------------------
+## Actores
+##### GET `/actores`
+Devuelve un listado de todos los actores/actrices registrados en el sistemas
+
+---------------------------
+##### GET `/actores/:id`
+Busqueda de un actor indicado por *id*
+
+---------------------------
+##### GET `/actores/titulo/:id`
+Devuelve un listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*
+
+---------------------------
+## Tags
+##### GET `/tags`
+Devuelve un listado con todos los tags disponibles en el modelo.
+
+---------------------------
+##### GET `/tags/:id`
+Devuelve un listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
