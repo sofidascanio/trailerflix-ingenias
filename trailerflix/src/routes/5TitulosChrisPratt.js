@@ -11,6 +11,15 @@ router.get('/', async (req, res) => {
 
     // nombre = Chris Pratt
     // Actor -> Reparto -> Titulo
+
+    // SELECT a.nombreCompleto, COUNT(r.idActor) AS 'Peliculas/Series'
+    // FROM actores a INNER JOIN reparto r ON (a.id = r.idActor)
+    // WHERE nombreCompleto = "Chris Pratt" 
+    // GROUP BY r.idActor;
+
+    // Se podria agregar mas detalle como el nombre de los titulos pero no lo pide
+
+    // Devuelve 4
 });
 
 module.exports = router;

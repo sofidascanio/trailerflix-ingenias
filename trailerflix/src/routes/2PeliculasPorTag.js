@@ -15,6 +15,11 @@ router.get('/:tag', async (req, res) => {
     // nombreTag de tabla Tag
     // Tag -> TagsTitulos -> Titulo <- Categoria (Pelicula)
 
+    // SELECT titulo AS Nombre, resumen AS Resumen, duracion as Duración, trailer AS Trailer
+    // FROM titulos INNER JOIN tagstitulos ON (titulos.id = tagstitulos.idTitulo)
+    //             INNER JOIN tags ON (tags.id = tagstitulos.idTag)
+    // WHERE tags.nombreTag IN ("Aventura", :tag) AND titulos.idCategoria = (SELECT id FROM categorias WHERE nombreCategoria = "Pelicula");
+
 });
 
 module.exports = router;

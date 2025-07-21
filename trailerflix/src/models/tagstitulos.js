@@ -1,22 +1,43 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
+const Titulo = require('../models/titulo.js');
+const Tag = require('../models/tag.js');
+
 const TagsTitulos = sequelize.define('TagsTitulos', {
     id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
-    // buscar si se explicita que es clave foranea
+    // idTitulo: {
+    //     type: DataTypes.INTEGER, defaultValue: null
+    // },
+    // idTag: {
+    //     type: DataTypes.INTEGER, defaultValue: null
+    // },
     idTitulo: {
-        type: DataTypes.INTEGER, defaultValue: null
+        type: DataTypes.INTEGER,
+            references: {
+            model: Titulo, 
+            key: 'id',
+            defaultValue: null,
+        },
     },
     idTag: {
-        type: DataTypes.INTEGER, defaultValue: null
+        type: DataTypes.INTEGER,
+            references: {
+            model: Tag,
+            key: 'id',
+            defaultValue: null,
+        },
     },
     },
     {
         tableName: 'TagsTitulos',
         timestamps: false,
 });
+
+TagsTitulos.belongsTo(Titulo, { foreignKey: 'idTitulo' });
+TagsTitulos.belongsTo(Tag, { foreignKey: 'idTag' });
 
 module.exports = TagsTitulos

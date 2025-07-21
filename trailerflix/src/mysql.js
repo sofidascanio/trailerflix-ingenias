@@ -11,7 +11,8 @@ password = process.env.DB_PASS;
 const sequelize = new Sequelize (database, username, password, {
 	host: host,
 	dialect: 'mysql',
-	dialectOptions: { options: { encrypt: true } },
+    // esto dice la consola que no es valido, no rompe nada pero por las dudas lo comento
+	// dialectOptions: { options: { encrypt: true } },
 	define: { timestamps: false }
 });
 

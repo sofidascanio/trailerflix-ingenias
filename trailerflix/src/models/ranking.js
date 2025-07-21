@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../mysql');
 
+const Titulo = require('../models/titulo.js');
+
 const Ranking = sequelize.define('Ranking', {
     id: {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
@@ -20,5 +22,7 @@ const Ranking = sequelize.define('Ranking', {
         tableName: 'Ranking',
         timestamps: false,
 });
+
+Ranking.belongsTo(Titulo, { foreignKey: 'idTitulo' });
 
 module.exports = Ranking

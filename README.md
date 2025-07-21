@@ -44,8 +44,8 @@ DB_PASS= Contraseña de MySQL
 | PETICIÓN | URL | DESCRIPCIÓN |
 |:--------:|-----|-------------|
 | GET | [/trailerflix](/) | Catalogo de Trailerflix |
-| GET | [/peliculas_genero/:genero](/) | Listado de Peliculas por **Género** |
-| GET | [/peliculas_tags/:tag](/) | Listado de Peliculas con Tags **"Aventura"** y: *"Ciencia Ficción"* o *"Fantasia"*|
+| GET | [/peliculas_genero/:genero](#get-peliculas_generogenero) | Listado de Peliculas por **Género** |
+| GET | [/peliculas_tags/:tag](#get-peliculas_tagstag) | Listado de Peliculas con Tags **"Aventura"** y: *"Ciencia Ficción"* o *"Fantasia"*|
 | GET | [/resumen_incluye_mision](/) | Listado de Titulos (Series/Peliculas) cuyo resumen contenga la palabra **"misión"** |
 | GET | [/series_tres_temporadas](/) | Listado de series con al menos *3 temporadas* |
 | GET | [/titulos_chris_pratt](/) | Cantidad de películas/series donde trabajó el actor *Chris Pratt*.|
@@ -57,15 +57,22 @@ DB_PASS= Contraseña de MySQL
 | GET | [/cantidad_series](/) | Cantidad de Series registradas |
 | GET | [/series_orden_descendente](/) | Listado de series en orden descendente por cantidad de temporadas |
 | GET | [/fecha_lanzamiento_titulo](/) | ¿? campo fecha_lanzamiento agregado, mostrar listado | 
-| GET | [/palabra_clave_titulo](/) | Listado de Peliculas cuyo titulo o descripcion contengan **:palabra** |
+| GET | [/palabra_clave_titulo/:palabra](#get-palabra_clave_titulopalabra) | Listado de Peliculas cuyo titulo o descripcion contengan **:palabra** |
 | GET | [/ranking](/) | Listado de Ranking de Peliculas y Series |
 
 -----------
 ## GET `/peliculas_genero/:genero`
-**:genero** : Existen X generos en *trailerflix*
+**:genero** : Existen 10 generos en *trailerflix*
 * `cienciaficcion`: para buscar **"Ciencia Ficción"**
 * `drama`: para buscar **"Drama"**
-* ....
+* `sucesoreal`: para buscar **"Suceso Real"**
+* `suspenso`: para buscar **"Suspenso"**
+* `comedia`: para buscar **"Comedia"**
+* `familia`: para buscar **"Familia"**
+* `terror`: para buscar **"Terror"**
+* `accion`: para buscar **"Acción"**
+* `aventura`: para buscar **"Aventura"**
+* `fantasia`: para buscar **"Fantasia"**
 
 -----------------
 ## GET `/peliculas_tags/:tag`
@@ -73,3 +80,6 @@ En esta petición, *tag* puede tener dos valores:
 * `cienciaficcion`: para buscar peliculas con el tag **"Ciencia Ficción"**
 * `fantasia`: para buscar peliculas con el tag **"Fantasia"**
 Esto devuelve un listado de peliculas con el tag **"Aventura"** y el tag indicado por parametro. 
+
+--------------------------
+## GET `/palabra_clave_titulo/:palabra`
