@@ -15,11 +15,19 @@ router.get('/:id', async (req, res) => {
         }
 
         const titulos = await Titulo.findAll({
-            attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['trailer', 'Trailer'], ],
-            where: { idGenero: id },
+            attributes: [ 'titulo', ],
+            where: { idGenero: genero.id },
         });
 
-        res.json(titulos);
+        const titulosGeneros = titulos.map(t => t.titulo)
+
+        titulosDelGenero = {
+            'Genero': genero.nombreGenero,
+            'Titulos': titulosGeneros
+        };
+        
+        res.json(titulosDelGenero);
+
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: `Error al obtener titulos` });

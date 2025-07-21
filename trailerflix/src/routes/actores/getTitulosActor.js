@@ -18,10 +18,19 @@ router.get('/titulos/:id', async (req, res) => {
         const reparto = await Reparto.findAll({
             where: { idActor: actor.id },
             // se podria agregar categoria + genero
-            include: { model: Titulo, attributes: ['titulo'] }
+            include: [ { model: Actor, attributes: ['nombreCompleto'] },
+                    { model: Titulo, attributes: ['titulo'] } ]
         });
 
-        res.json(reparto);
+        const nombreActor = reparto[0].Actor.nombreCompleto;
+        const titulos = reparto.map(r => r.Titulo.titulo);
+
+        actorTitulos = {
+            'Nombre': nombreActor,
+            'Titulos': titulos
+        };
+        
+        res.json(actorTitulos);
 
     } catch (error) {
         console.error('Error al buscar el actor:', error);

@@ -8,6 +8,7 @@ const Actor = require('../../models/actor.js');
 // GET /titulos/reparto/:id
 router.get('/reparto/:id', async (req, res) => {
     try {
+        console.log("Hola");
         const tituloId = req.params.id;
         const titulo = await Titulo.findByPk(tituloId);
 
@@ -20,7 +21,14 @@ router.get('/reparto/:id', async (req, res) => {
             include: { model: Actor, attributes: ['nombreCompleto'] }
         });
 
-        res.json(reparto);
+        const actores = reparto.map(r => r.Actor.nombreCompleto)
+
+        repartoTitulo = {
+            'Titulo': titulo.titulo,
+            'Actores': actores
+        };
+        
+        res.json(repartoTitulo);
 
     } catch (error) {
         console.error('Error al buscar el reparto titulo:', error);

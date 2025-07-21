@@ -14,8 +14,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Rutas
-app.use('/', routes);
 
 // Conexión con BD
 const { authenticate, closeConnection } = require('./src/mysql.js');
@@ -24,6 +22,9 @@ const { authenticate, closeConnection } = require('./src/mysql.js');
 app.get('/', (req, res) => {
     res.status(200).end("Hola Mundo");
 });
+
+// Rutas
+app.use('/', routes);
 
 // Manejo de rutas invalidas
 app.use((req, res) => {

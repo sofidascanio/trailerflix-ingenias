@@ -20,11 +20,22 @@ router.get('/:id', async (req, res) => {
         //mostrar todos los titulos con este tag
 
         const tagst = await TagsTitulos.findAll({
-            include: [{ model: Titulo, attributes: [['titulo', 'Nombre']] }, 
-                      { model: Tag, attributes: [['nombreTag', 'Tag']] }],
+            include: [{ model: Titulo, attributes: ['titulo'] }, 
+                      { model: Tag, attributes: ['nombreTag'] }],
         });
+
+        const nombreTag = tagst[0].Tag.nombreTag;
+        // set para que no tenga duplicados
+        // ... para quede array plano
+        const titulos = [...new Set(tagst.map(tt => tt.Titulo.titulo))];
+
+        tagsConTitulos = {
+            'Nombre': nombreTag,
+            'Titulos': titulos
+        };
         
-        res.json(tagst);
+        res.json(tagsConTitulos);
+
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: `Error al obtener titulos` });

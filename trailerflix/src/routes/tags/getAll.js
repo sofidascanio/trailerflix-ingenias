@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Tag = require('../../models/titulo.js');
+const Tag = require('../../models/tag.js');
 
 // GET /tags
 router.get('/', async (req, res) => {

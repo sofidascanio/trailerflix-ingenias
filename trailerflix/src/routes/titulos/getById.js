@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
         if (categoria.nombreCategoria === "Serie") {
             t = {
-                'Nombre': titulo.nombre,
+                'Nombre': titulo.titulo,
                 'Resumen': titulo.resumen,
                 'Temporadas': titulo.temporadas,
                 'Genero': genero.nombreGenero,
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
             };
         } else {
             t = {
-                'Nombre': titulo.nombre,
+                'Nombre': titulo.titulo,
                 'Resumen': titulo.resumen,
                 'Duración': titulo.duracion,
                 'Genero': genero.nombreGenero,
