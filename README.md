@@ -73,14 +73,14 @@ DB_PASS= Contraseña de MySQL
 
 -----------
 ## Titulos
-##### Listado de Titulos
-Devuelve el catalogo de trailerflix, cada pelicula/serie con su ID, Nombre, Resumen y Trailer
+### Listado de Titulos
+Catalogo de trailerflix, cada pelicula/serie con su ID, nombre, resumen y trailer.
 ``` 
 GET `/titulos`
 ```
 
 -----------------
-##### Busqueda de Titulo
+### Busqueda de Titulo
 Busqueda de un titulo indicado por *id*
 ``` 
 GET `/titulos/:id`
@@ -92,7 +92,7 @@ GET `/titulos/5`
 ```
 
 Devuelve:
-``` 
+``` javascript
 {
   "Nombre": "The Crown",
   "Resumen": "Este drama narra las rivalidades políticas y el romance de la reina Isabel II, así como los sucesos que moldearon la segunda mitad del siglo XX.",
@@ -102,9 +102,9 @@ Devuelve:
 }
 ```
 
---------------------------
-##### Busqueda de Reparto por Titulo
-Devuelve el reparto (todos los actores y actrices que trabajaron) de un titulo indicado por *id*
+-------------------------
+### Busqueda de Reparto por Titulo
+Reparto (todos los actores y actrices que trabajaron) de un titulo indicado por *id*
 ``` 
 GET `/titulos/reparto/:id`
 ```
@@ -115,7 +115,7 @@ GET `/titulos/reparto/8`
 ```
 
 Devuelve:
-``` 
+``` javascript
 {
   "Titulo": "Avengers: End Game",
   "Actores": [
@@ -130,30 +130,30 @@ Devuelve:
 ```
 
 -----------------------------
-##### Listado de Series
-Devuelve un listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer.
+### Listado de Series
+Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer.
 ``` 
 GET `/titulos/series`
 ```
 
 -------------------------------
-##### Listado de Peliculas
-Devuelve un listado de todas las peliculas, cada una con su nombre, resumen, duración y trailer.
+### Listado de Peliculas
+Listado de todas las peliculas, cada una con su nombre, resumen, duración y trailer.
 ``` 
 GET `/titulos/peliculas`
 ```
 
 ---------------------------
 ## Generos
-##### Listado de Generos
-Devuelve un listado con todos los generos disponibles en el modelo.
+### Listado de Generos
+Listado con todos los generos disponibles en el modelo, cada uno con su ID y nombre.
 ``` 
 GET `/generos`
 ```
 
 ---------------------------
-##### Busqueda de Titulos por Genero
-Devuelve un listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*
+### Busqueda de Titulos por Genero
+Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*
 ``` 
 GET `/generos/:id`
 ```
@@ -163,7 +163,7 @@ GET `/generos/8` Comedia
 ```
 
 Devuelve:
-``` 
+```javascript 
 {
   "Genero": "Acción",
   "Titulos": [
@@ -180,15 +180,15 @@ Devuelve:
 
 ---------------------------
 ## Actores
-##### Listado de Actores
-Devuelve un listado de todos los actores/actrices registrados en el sistemas
+### Listado de Actores
+Listado de todos los actores/actrices registrados en el sistemas.
 ``` 
 GET `/actores`
 ```
 
 
 ---------------------------
-##### Busqueda de Actor
+### Busqueda de Actor
 Busqueda de un actor indicado por *id*
 ``` 
 GET `/actores`
@@ -199,7 +199,7 @@ GET `/actores/78`
 ```
 
 Devuelve:
-``` 
+``` javascript
 {
   "id": 78,
   "nombreCompleto": "Tom Braidwood"
@@ -208,8 +208,8 @@ Devuelve:
 
 
 ---------------------------
-##### Busqueda de Titulos por Actor
-Devuelve un listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*
+### Busqueda de Titulos por Actor
+Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*
 ``` 
 GET `/actores/titulo/:id`
 ```
@@ -219,7 +219,7 @@ GET `/actores/titulos/1`
 ```
 
 Devuelve:
-``` 
+``` javascript
 {
   "Nombre": "Pedro Pascal",
   "Titulos": [
@@ -232,16 +232,16 @@ Devuelve:
 
 ---------------------------
 ## Tags
-##### Listado de Tags
-Devuelve un listado con todos los tags disponibles en el modelo.
+### Listado de Tags
+Listado con todos los tags disponibles en el modelo, cada uno con su ID y nombre.
 ``` 
 GET `/tags`
 ```
 
 
 ---------------------------
-##### Busqueda de Tags por Genero
-Devuelve un listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
+### Busqueda de Tags por Genero
+Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
 ``` 
 GET `/tags/:id`
 ```
@@ -251,7 +251,7 @@ GET `/tags/7`
 ```
 
 Devuelve:
-``` 
+``` javascript
 {
   "Nombre": "Sci-Fi",
   "Titulos": [
