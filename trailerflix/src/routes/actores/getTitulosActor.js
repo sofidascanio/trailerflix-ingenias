@@ -15,6 +15,7 @@ router.get('/titulos/:id', async (req, res) => {
             res.status(404).json({ error: 'Actor no encontrado' })
         }
 
+        // faltaria categoria + genero por cada titulo
         const reparto = await Reparto.findAll({
             where: { idActor: actor.id },
             // se podria agregar categoria + genero
