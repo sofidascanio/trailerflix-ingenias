@@ -43,9 +43,9 @@
 
 #### Archivo `.env`
 Necesario para la conexión a la Base de Datos.
-```
+```javascript
 PORT= Puerto para usar
-DB_HOST= host
+DB_HOST= Host
 DB_NAME= Nombre de la Base de Datos
 DB_USER= Nombre de Usuario de MySQL
 DB_PASS= Contraseña de MySQL
@@ -59,17 +59,17 @@ DB_PASS= Contraseña de MySQL
 | PETICIÓN | URL | DESCRIPCIÓN |
 |:--------:|-----|-------------|
 | GET | [/titulos](./trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
-| GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de titulo por *id* |
-| GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Reparto de un titulo por su *id* |
+| GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de **titulo** por *id* |
+| GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Reparto de un **titulo** por su *id* |
 | GET | [/titulos/series](./trailerflix/src/routes/titulos/getAllSeries.js) | Listado de **Series** |
 | GET | [/titulos/peliculas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de **Peliculas**|
 | GET | [/generos](./trailerflix/src/routes/generos/getAll.js) | Listado de **Generos** disponibles|
-| GET | [/generos/:id](./trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al genero indicado por *id* |
+| GET | [/generos/:id](./trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al **genero** indicado por *id* |
 | GET | [/actores](./trailerflix/src/routes/actores/getAll.js) | Listado de **Actores/Actrices** |
-| GET | [/actores/:id](./trailerflix/src/routes/actores/getById.js) | Busqueda de actor por *id*|
-| GET | [/actores/titulos/:id](./trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el actor/actriz indicado por *id* |
+| GET | [/actores/:id](./trailerflix/src/routes/actores/getById.js) | Busqueda de **actor** por *id*|
+| GET | [/actores/titulos/:id](./trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el **actor/actriz** indicado por *id* |
 | GET | [/tags](/trailerflix-ingenias/trailerflix/src/routes/tags/getAll.js) | Listado de **Tags** disponibles |
-| GET | [/tags/:id](/trailerflix-ingenias/trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al tag indicado por *id* |
+| GET | [/tags/:id](/trailerflix-ingenias/trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al **tag** indicado por *id* |
 
 -----------
 ## Titulos
@@ -86,7 +86,7 @@ Busqueda de un titulo indicado por *id*
 GET `/titulos/:id`
 ```
 
-Ejemplo:
+**Ejemplo:**
 ``` 
 GET `/titulos/5`
 ```
@@ -158,8 +158,9 @@ Listado con todos titulos (peliculas/series) que correspondan al genero indicado
 GET `/generos/:id`
 ```
 
+**Ejemplo:**
 ``` 
-GET `/generos/8` Comedia
+GET `/generos/8`
 ```
 
 Devuelve:
@@ -194,6 +195,7 @@ Busqueda de un actor indicado por *id*
 GET `/actores`
 ```
 
+**Ejemplo:**
 ``` 
 GET `/actores/78`
 ```
@@ -214,6 +216,7 @@ Listado de todos los titulos (peliculas/series) donde participo el actor/actriz 
 GET `/actores/titulo/:id`
 ```
 
+**Ejemplo:**
 ``` 
 GET `/actores/titulos/1`
 ```
@@ -246,6 +249,7 @@ Listado con todos titulos (peliculas/series) que correspondan al tag indicado po
 GET `/tags/:id`
 ```
 
+**Ejemplo:**
 ``` 
 GET `/tags/7`
 ```
