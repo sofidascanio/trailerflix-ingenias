@@ -159,6 +159,37 @@ Listado de titulos cuyo resumen contenga la palabra indicada por parametro `:pal
 GET `/titulos/resumen/:palabra`
 ```
 
+**Ejemplo:**
+```bash 
+GET `/titulos/resumen/mision`
+```
+*Devuelve:*
+```javascript 
+{
+  "Nombre": "3022",
+  "Resumen": "La película está ambientada en una estación espacial en el futuro. La tripulación sufre un estrés traumático y considera abandonar su misión después de observar lo que creen que es la destrucción de la Tierra. La película se muestra como una Serie de flashbacks y flash-forward.",
+  "Trailer": "https://www.youtube.com/embed/AGQ7OkmIx4Q",
+  "Categorium": {
+    "Categoria": "Pelicula"
+  },
+  "Genero": {
+    "Genero": "Suspenso"
+  }
+},
+{
+  "Nombre": "Viuda Negra",
+  "Resumen": "Primera pelicula individual de la Viuda Negra en el universo cinematografico de Marvel, contando su historia desde que se inició como doble agente rusa, su niñez, sus misiones, y su actualidad, después de Avengers.",
+  "Trailer": "https://www.youtube.com/embed/BIn8iANwEog",
+  "Categorium": {
+    "Categoria": "Pelicula"
+  },
+  "Genero": {
+    "Genero": "Aventura"
+  }
+},
+...
+```
+
 ---------------------------
 ## Generos
 ### Listado de Generos
