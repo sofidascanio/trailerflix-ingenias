@@ -13,6 +13,7 @@
         - [Busqueda de Reparto por Titulo](#busqueda-de-reparto-por-titulo)
         - [Listado de Series](#listado-de-series)
         - [Listado de Peliculas](#listado-de-series)
+        - [Busqueda de Titulo por Resumen](#busqueda-de-titulos-por-resumen)
     - [Generos](#generos)
         - [Listado de Generos](#listado-de-generos)
         - [Busqueda de Titulos por Genero](#busqueda-de-titulos-por-genero)
