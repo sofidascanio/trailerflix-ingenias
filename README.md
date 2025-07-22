@@ -138,34 +138,43 @@ GET `/titulos/reparto/8`
 -----------------------------
 ### Listado de Series
 Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer.
-``` 
+```bash
 GET `/titulos/series`
 ```
 
 -------------------------------
 ### Listado de Peliculas
 Listado de todas las peliculas, cada una con su nombre, resumen, duración y trailer.
-``` 
+```bash
 GET `/titulos/peliculas`
+```
+
+----------------------------------
+### Busqueda de Titulos por resumen
+
+Listado de titulos cuyo resumen contenga la palabra indicada por parametro `:palabra`
+
+```bash
+GET `/titulos/resumen/:palabra`
 ```
 
 ---------------------------
 ## Generos
 ### Listado de Generos
 Listado con todos los generos disponibles en el modelo, cada uno con su ID y nombre.
-``` 
+```bash 
 GET `/generos`
 ```
 
 ---------------------------
 ### Busqueda de Titulos por Genero
 Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*
-``` 
+```bash 
 GET `/generos/:id`
 ```
 
 **Ejemplo:**
-``` 
+```bash 
 GET `/generos/8`
 ```
 
@@ -189,7 +198,7 @@ GET `/generos/8`
 ## Actores
 ### Listado de Actores
 Listado de todos los actores/actrices registrados en el sistemas.
-``` 
+```bash 
 GET `/actores`
 ```
 
@@ -197,12 +206,12 @@ GET `/actores`
 ---------------------------
 ### Busqueda de Actor
 Busqueda de un actor indicado por *id*
-``` 
+```bash 
 GET `/actores`
 ```
 
 **Ejemplo:**
-``` 
+```bash 
 GET `/actores/78`
 ```
 
@@ -218,12 +227,12 @@ GET `/actores/78`
 ---------------------------
 ### Busqueda de Titulos por Actor
 Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*
-``` 
+```bash 
 GET `/actores/titulo/:id`
 ```
 
 **Ejemplo:**
-``` 
+```bash 
 GET `/actores/titulos/1`
 ```
 
@@ -243,7 +252,7 @@ GET `/actores/titulos/1`
 ## Tags
 ### Listado de Tags
 Listado con todos los tags disponibles en el modelo, cada uno con su ID y nombre.
-``` 
+```bash 
 GET `/tags`
 ```
 
@@ -251,12 +260,12 @@ GET `/tags`
 ---------------------------
 ### Busqueda de Tags por Genero
 Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
-``` 
+```bash 
 GET `/tags/:id`
 ```
 
 **Ejemplo:**
-``` 
+```bash 
 GET `/tags/7`
 ```
 
@@ -282,19 +291,19 @@ GET `/tags/7`
 ## Ranking
 ### Listado de Ranking
 Listado con todos los rankings disponibles en el modelo, cada uno con su el ID, nombre del titulo al que corresponde, ID del titulo, calificación, y comentarios.
-``` 
+```bash 
 GET `/ranking`
 ```
 
 -----------------
 ### Busqueda de Rankings por Titulo
 Listado con todos ranking que correspondan al titulo indicado por *id*
-``` 
+```bash 
 GET `/ranking/:id`
 ```
 
 **Ejemplo:**
-``` 
+```bash 
 GET `/ranking/7`
 ```
 
