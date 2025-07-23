@@ -11,16 +11,16 @@ router.get('/:id', async (req, res) => {
         const genero = await Genero.findByPk(generoId);
 
         if (!genero) {
-            res.status(404).json({ error: 'Genero no encontrado' })
+            res.status(404).json({ error: 'Genero no encontrado' });
         }
 
         const titulos = await Titulo.findAll({
-            attributes: [ 'titulo', ],
+            attributes: [ 'titulo', 'id', ],
             where: { idGenero: genero.id },
         });
 
-        // mapeo para quedarme solo con los titulos en un array 
-        const titulosGeneros = titulos.map(t => t.titulo)
+        // mapeo para quedarme solo con los titulos y sus ID en un array 
+        const titulosGeneros = titulos.map(t => ({ id: t.id, titulo: t.titulo }));
 
         titulosDelGenero = {
             'Genero': genero.nombreGenero,
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
 
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: `Error al obtener titulos` });
+        res.status(500).json({ error: `Error al obtener titulos del genero ${generoId}` });
     }
 });
 

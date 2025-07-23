@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         res.json(rankings);
     } catch (error) {
         console.error('Error al consultar los rankings:', error);
-        res.status(500).json({ error: 'Error al consultar los rankings' });
+        res.status(500).json({ error: 'Error al consultar los rankings de titulos' });
     }
 });
 

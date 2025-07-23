@@ -19,12 +19,12 @@ router.get('/', async (req, res) => {
         resultados = {
             'Cantidad de Series': series,
             'Cantidad de Peliculas': peliculas
-        }
+        };
 
         res.json(resultados);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: `Error al obtener series` });
+        res.status(500).json({ error: `Error al obtener cantidad de series y peliculas` });
     }
 });
 

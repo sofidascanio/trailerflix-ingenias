@@ -16,15 +16,14 @@ router.get('/:id', async (req, res) => {
         }
 
         const tagst = await TagsTitulos.findAll({
-            include: [{ model: Titulo, attributes: ['titulo'] }, 
+            include: [{ model: Titulo, attributes: ['titulo', 'id'] }, 
                       { model: Tag, attributes: ['nombreTag'] }],
+            where: { idTag: tag.id },
         });
 
         const nombreTag = tagst[0].Tag.nombreTag;
-        // primero mapeo para quedarme con los titulos en un array
-        // creo un set (del map) para que no tenga duplicados
-        // ... para quede array plano 
-        const titulos = [...new Set(tagst.map(tt => tt.Titulo.titulo))];
+        // mapeo para quedarme con los titulos (nombre + id) en un array
+        const titulos = tagst.map(tt => ({ id: tt.Titulo.id, titulo: tt.Titulo.titulo  }));
 
         tagsConTitulos = {
             'Nombre': nombreTag,
@@ -35,7 +34,7 @@ router.get('/:id', async (req, res) => {
 
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: `Error al obtener titulos` });
+        res.status(500).json({ error: `Error al obtener titulos que pertenecen al tag: ${tagId}` });
     }
 });
 

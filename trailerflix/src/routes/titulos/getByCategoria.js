@@ -15,26 +15,26 @@ router.get('/:categoria', async (req, res) => {
         const categoria = await Categoria.findOne({ where: { nombreCategoria: nombre } });
 
         if (!categoria) {
-            res.status(404).json({ error: "La categoria debe ser 'serie' o 'pelicula'" })
+            res.status(404).json({ error: "La categoria debe ser 'serie' o 'pelicula'" });
         }
 
         if (categoria.nombreCategoria === "pelicula") {
             const peliculas = await Titulo.findAll({
-                attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['duracion', 'Duración'], ['trailer', 'Trailer'], ],
+                attributes: [ ['id', 'ID'], ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['duracion', 'Duración'], ['trailer', 'Trailer'], ],
                 where: { idCategoria: categoria.id }
             });
             res.json(peliculas);
         } else {
             const series = await Titulo.findAll({
-                attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['temporadas', 'Temporadas'], ['trailer', 'Trailer'], ],
+                attributes: [ ['id', 'ID'], ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['temporadas', 'Temporadas'], ['trailer', 'Trailer'], ],
                 where: { idCategoria: categoria.id }
             });
             res.json(series);
-        }
+        };
 
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: `Error al obtener titulos por categoria: ${categoria}` });
+        res.status(500).json({ error: `Error al obtener titulos por categoria: ${nombre}` });
     }
 });
 

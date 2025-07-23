@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
         const actor = await Actor.findByPk(actorId);
 
         if (!actor) {
-            res.status(404).json({ error: 'Actor no encontrado' })
+            res.status(404).json({ error: 'Actor no encontrado' });
         }
 
         res.json(actor);

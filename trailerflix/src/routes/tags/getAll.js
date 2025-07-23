@@ -6,10 +6,8 @@ const Tag = require('../../models/tag.js');
 // GET /tags
 router.get('/', async (req, res) => {
     try {
-        const tags = await Tag.findAll({
-            attributes: [ ['id', 'ID'], ['nombreTag', 'Nombre'], ]
-        });
-
+        const tags = await Tag.findAll({ attributes: [ ['id', 'ID'], ['nombreTag', 'Nombre'], ] });
+        
         res.json(tags);
     } catch (error) {
         console.error('Error:', error);

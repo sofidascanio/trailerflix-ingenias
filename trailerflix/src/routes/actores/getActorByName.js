@@ -20,7 +20,7 @@ router.get('/:nombre', async (req, res) => {
 
     } catch (error) {
         console.error('Error al buscar los actores:', error);
-        res.status(500).json({ error: `Error al obtener actores cuyo nombre incluyan: ${nombre}` });
+        res.status(500).json({ error: `Error al obtener actores cuyo nombre y/o apellido incluyan: ${nombre}` });
     }
 });
 

@@ -67,11 +67,11 @@ DB_PASS= Contraseña de MySQL
 |:--------:|-----|-------------|
 | GET | [/titulos](./trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
 | GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de **titulo** por *id* |
-| GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Reparto de un **titulo** por su *id* |
+| GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Busqueda de reparto de un **titulo** por *id* |
 | GET | [/titulos/categoria/:categoria](./trailerflix/src/routes/titulos/getAllSeries.js) | Busqueda de titulos por **Categoria** |
 | GET | [/titulos/resumen/:palabra](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de titulos cuyo resumen incluya la palabra *:palabra*|
 | GET | [/titulos/cantidad](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Cantidad de **Series** y **Peliculas** en Trailerflix |
-| GET | [/titulos/series/:temporadas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de series que tengan menos temporadas el numero indicado por *:temporadas*, ordenado de forma descendente|
+| GET | [/titulos/series/:temporadas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de series que tengan menos temporadas que el numero indicado por *:temporadas*, ordenado de forma descendente|
 | GET | [/generos](./trailerflix/src/routes/generos/getAll.js) | Listado de **Generos** disponibles|
 | GET | [/generos/:id](./trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al **genero** indicado por *id* |
 | GET | [/actores](./trailerflix/src/routes/actores/getAll.js) | Listado de **Actores/Actrices** |
@@ -132,12 +132,30 @@ GET `/titulos/reparto/8`
 {
   "Titulo": "Avengers: End Game",
   "Actores": [
-    "Robert Downey Jr.",
-    "Chris Evans",
-    "Mark Ruffalo",
-    "Chris Hemsworth",
-    "Scarlett Johansson",
-    "Jeremy Renner"
+    {
+      "id": 38,
+      "Nombre": "Robert Downey Jr."
+    },
+    {
+      "id": 39,
+      "Nombre": "Chris Evans"
+    },
+    {
+      "id": 40,
+      "Nombre": "Mark Ruffalo"
+    },
+    {
+      "id": 41,
+      "Nombre": "Chris Hemsworth"
+    },
+    {
+      "id": 159,
+      "Nombre": "Scarlett Johansson"
+    },
+    {
+      "id": 42,
+      "Nombre": "Jeremy Renner"
+    }
   ]
 }
 ```
@@ -147,7 +165,7 @@ GET `/titulos/reparto/8`
 Listado de todos los titulos que correspondan a la categoria indicada por `:categoria`. El parametro puede tener dos valores:
 * `serie`: Listado de **Series**
 * `pelicula`: Listado de **Peliculas**
-
+Cada serie o pelicula se muestra con: ID, nombre, resumen, temporadas/duracion (segun corresponda) y trailer.
 ```bash
 GET `/titulos/categoria/:categoria`
 ```
@@ -168,6 +186,7 @@ GET `/titulos/resumen/mision`
 *Devuelve:*
 ```javascript 
 {
+  "ID": 21,
   "Nombre": "3022",
   "Resumen": "La película está ambientada en una estación espacial en el futuro. La tripulación sufre un estrés traumático y considera abandonar su misión después de observar lo que creen que es la destrucción de la Tierra. La película se muestra como una Serie de flashbacks y flash-forward.",
   "Trailer": "https://www.youtube.com/embed/AGQ7OkmIx4Q",
@@ -179,6 +198,7 @@ GET `/titulos/resumen/mision`
   }
 },
 {
+  "ID": 28,
   "Nombre": "Viuda Negra",
   "Resumen": "Primera pelicula individual de la Viuda Negra en el universo cinematografico de Marvel, contando su historia desde que se inició como doble agente rusa, su niñez, sus misiones, y su actualidad, después de Avengers.",
   "Trailer": "https://www.youtube.com/embed/BIn8iANwEog",
@@ -199,9 +219,7 @@ GET `/titulos/cantidad`
 ```
 ------------------------
 ### Listado de Series por cantidad de temporadas
-Cantidad de Series y Peliculas registradas actualmente en trailerflix
-Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden descendente
-
+Listado de todas las series, cada una con su ID, nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden descendente.
 ```bash 
 GET `/titulos/series/:temporadas`
 ```
@@ -252,13 +270,19 @@ GET `/generos/8`
 {
   "Genero": "Acción",
   "Titulos": [
-    "Ava",
-    "Jurassic World",
-    "El Contador",
-    "Noche en el Museo",
-    "Jurassic World - El reino caido",
-    "Indiana Jones - y el Reino de la Calavera de Cristal",
-    "El código Da Vinci"
+    {
+      "id": 18,
+      "titulo": "Ava"
+    },
+    {
+      "id": 31,
+      "titulo": "Jurassic World"
+    },
+    {
+      "id": 75,
+      "titulo": "El Contador"
+    },
+  ...
   ]
 }
 ```
@@ -323,7 +347,7 @@ GET `/actores/nombre/chris`
 
 ---------------------------
 ### Busqueda de Titulos por Actor
-Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*
+Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*, cada titulo con su id, nombre, categoria y genero.
 ```bash 
 GET `/actores/titulo/:id`
 ```
@@ -338,8 +362,18 @@ GET `/actores/titulos/1`
 {
   "Nombre": "Pedro Pascal",
   "Titulos": [
-    "The Mandalorian",
-    "Mujer Maravilla 1984"
+    {
+      "id": 1,
+      "titulo": "The Mandalorian",
+      "categoria": "Serie",
+      "genero": "Ciencia Ficción"
+    },
+    {
+      "id": 74,
+      "titulo": "Mujer Maravilla 1984",
+      "categoria": "Pelicula",
+      "genero": "Fantasía"
+    }
   ]
 }
 ```
@@ -355,7 +389,7 @@ GET `/tags`
 
 ---------------------------
 ### Busqueda de Titulos por Tag
-Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
+Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*, con su ID y nombre.
 ```bash 
 GET `/tags/:id`
 ```
@@ -368,18 +402,17 @@ GET `/tags/7`
 *Devuelve:*
 ``` javascript
 {
-  "Nombre": "Sci-Fi",
+  "Nombre": "Familia",
   "Titulos": [
-    "The Mandalorian",
-    "The Umbrella Academy",
-    "Gambito de Dama",
-    "Riverdale",
-    "The Crown",
-    "Enola Holmes",
-    "Guasón",
-    "Avengers: End Game",
-    "Juego de tronos",
-    ....
+    {
+      "id": 12,
+      "titulo": "Friends"
+    },
+    {
+      "id": 13,
+      "titulo": "Anne with an 'E'"
+    },
+  ...
   ]
 }
 ```
@@ -400,9 +433,18 @@ GET `/tags/titulos/45`
 {
   "Titulo": "It (eso)",
   "Tags": [
-    "Terror",
-    "Suspenso",
-    "Drama"
+    {
+      "id": 18,
+      "titulo": "Terror"
+    },
+    {
+      "id": 16,
+      "titulo": "Suspenso"
+    },
+    {
+      "id": 6,
+      "titulo": "Drama"
+    }
   ]
 }
 ```
@@ -410,14 +452,14 @@ GET `/tags/titulos/45`
 ---------------
 ## Ranking
 ### Listado de Ranking
-Listado con todos los rankings disponibles en el modelo, cada uno con su el ID, nombre del titulo al que corresponde, ID del titulo, calificación, y comentarios.
+Listado con todos los rankings disponibles en el modelo, cada uno con su ID, nombre del titulo al que corresponde, ID del titulo, calificación, y comentarios.
 ```bash 
 GET `/ranking`
 ```
 
 -----------------
 ### Busqueda de Rankings por Titulo
-Listado con todos ranking que correspondan al titulo indicado por *id*
+Listado con todos ranking que correspondan al titulo indicado por *id*, cada titulo con su ID y nombre.
 ```bash 
 GET `/ranking/:id`
 ```
@@ -430,17 +472,19 @@ GET `/ranking/2`
 *Devuelve:*
 ``` javascript
 {
-  "Calificación": 3,
-  "Comentarios": "Buena",
-  "Titulo": {
-    "Nombre": "The Umbrella Academy"
+    "Calificación": 3,
+    "Comentarios": "Buena",
+    "Titulo": {
+      "ID": 2,
+      "Nombre": "The Umbrella Academy"
+    }
+  },
+  {
+    "Calificación": 2,
+    "Comentarios": "Maso",
+    "Titulo": {
+      "ID": 2,
+      "Nombre": "The Umbrella Academy"
+    }
   }
-},
-{
-  "Calificación": 2,
-  "Comentarios": "Maso",
-  "Titulo": {
-    "Nombre": "The Umbrella Academy"
-  }
-}
 ```

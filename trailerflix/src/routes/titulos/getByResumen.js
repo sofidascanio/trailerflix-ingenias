@@ -13,10 +13,13 @@ router.get('/:palabra', async (req, res) => {
         const palabra = req.params.palabra;
 
         // mejorar formato para mostrar ¿?
+        // include desde titulo con categoria y genero, tomo los nombres
         const titulos = await Titulo.findAll({
-            attributes: [['titulo', 'Nombre'], ['resumen', 'Resumen'], ['trailer', 'Trailer']],
-            include: [{ model: Categoria, attributes: [['nombreCategoria', 'Categoria']] }, 
-                    { model: Genero, attributes: [['nombreGenero', 'Genero']] }],
+            attributes: [ ['id','ID'], ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['trailer', 'Trailer'] ],
+            include: [
+                { model: Categoria, attributes: [['nombreCategoria', 'Categoria']] }, 
+                { model: Genero, attributes: [['nombreGenero', 'Genero']] }
+            ],
             where: { resumen: { [Op.like]: `%${palabra}%` } },
         });
 

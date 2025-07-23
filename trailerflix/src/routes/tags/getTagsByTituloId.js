@@ -5,7 +5,7 @@ const Titulo = require('../../models/titulo.js');
 const Tag = require('../../models/tag.js');
 const TagsTitulos = require('../../models/tagstitulos.js');
 
-// GET /tags/titulo/:id
+// GET /tags/titulos/:id
 router.get('/:id', async (req, res) => {
     try {
         const tituloId = req.params.id;
@@ -17,12 +17,13 @@ router.get('/:id', async (req, res) => {
 
         const tagst = await TagsTitulos.findAll({
             include: [{ model: Titulo, attributes: ['titulo'] }, 
-                      { model: Tag, attributes: ['nombreTag'] }],
+                      { model: Tag, attributes: ['nombreTag', 'id'] }],
             where: { idTitulo: titulo.id },
         });
 
         // tags en array
-        const tags = tagst.map(r => r.Tag.nombreTag)
+        // me quedo con id y nombre de tag
+        const tags = tagst.map(t => ({ id: t.Tag.id, titulo: t.Tag.nombreTag }));
 
         tagsDelTitulo = {
             'Titulo': titulo.titulo,

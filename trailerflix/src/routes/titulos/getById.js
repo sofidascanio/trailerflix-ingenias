@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
         const titulo = await Titulo.findByPk(tituloId);
 
         if (!titulo) {
-            res.status(404).json({ error: 'Titulo no encontrado' })
+            res.status(404).json({ error: 'Titulo no encontrado' });
         }
 
         // categoria y genero
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
         });
 
         // tags en array
-        const tags = tagst.map(r => r.Tag.nombreTag)
+        const tags = tagst.map(r => r.Tag.nombreTag);
 
         // armo json para mostrar 
         const tituloResultado = {
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
             tituloResultado['Temporadas'] = titulo.temporadas;
         } else {
             tituloResultado['Duración'] = titulo.duracion;
-        }
+        };
 
         res.json(tituloResultado);
 

@@ -12,12 +12,12 @@ router.get('/:id', async (req, res) => {
         const titulo = await Titulo.findByPk(tituloId);
 
         if (!titulo) {
-            res.status(404).json({ error: 'Titulo no encontrado' })
+            res.status(404).json({ error: 'Titulo no encontrado' });
         }
 
         const rankings = await Ranking.findAll({
             attributes: [ ['calificacion', 'Calificación'], ['Comentarios', 'Comentarios'] ],
-            include: [{ model: Titulo, attributes: [['titulo', 'Nombre']] }],
+            include: [{ model: Titulo, attributes: [ ['id', 'ID'], ['titulo', 'Nombre'] ] }],
             where: { idTitulo: titulo.id },
         });
 
