@@ -10,8 +10,6 @@ const Categoria = require('../../models/categoria.js');
 router.get('/:temporadas', async (req, res) => {
     const cantidad = parseFloat(req.params.temporadas);
 
-    console.log("Entra al series");
-
     if (isNaN(cantidad)){
         return res.status(400).send('Debe ingresar un numero');
     }
