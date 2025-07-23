@@ -7,7 +7,7 @@ host = process.env.DB_HOST;
 database = process.env.DB_NAME;
 username = process.env.DB_USER;
 password = process.env.DB_PASS;
-db_port = process.env.DB_PORT;
+db_port = process.env.DB_PORT || 3306;
 
 const sequelize = new Sequelize (database, username, password, {
 	host: host,
