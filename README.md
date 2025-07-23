@@ -65,24 +65,24 @@ DB_PASS= Contraseña de MySQL
 ## Peticiones
 | PETICIÓN | URL | DESCRIPCIÓN |
 |:--------:|-----|-------------|
-| GET | [/titulos](./trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
-| GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de **titulo** por *id* |
-| GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Busqueda de reparto de un **titulo** por *id* |
-| GET | [/titulos/categoria/:categoria](./trailerflix/src/routes/titulos/getAllSeries.js) | Busqueda de titulos por **Categoria** |
-| GET | [/titulos/resumen/:palabra](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de titulos cuyo resumen incluya la palabra *:palabra*|
-| GET | [/titulos/cantidad](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Cantidad de **Series** y **Peliculas** en Trailerflix |
-| GET | [/titulos/series/:temporadas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de series que tengan menos temporadas que el numero indicado por *:temporadas*, ordenado de forma descendente|
-| GET | [/generos](./trailerflix/src/routes/generos/getAll.js) | Listado de **Generos** disponibles|
-| GET | [/generos/:id](./trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al **genero** indicado por *id* |
-| GET | [/actores](./trailerflix/src/routes/actores/getAll.js) | Listado de **Actores/Actrices** |
-| GET | [/actores/:id](./trailerflix/src/routes/actores/getById.js) | Busqueda de **actor** por *id*|
-| GET | [/actores/nombre/:nombre](./trailerflix/src/routes/actores/getById.js) | Busqueda de actores cuyo nombre y/o apellido coincida con *nombre*|
-| GET | [/actores/titulos/:id](./trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el **actor/actriz** indicado por *id* |
-| GET | [/tags](./trailerflix/src/routes/tags/getAll.js) | Listado de **Tags** disponibles |
-| GET | [/tags/:id](./trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al **tag** indicado por *id* |
-| GET | [/tags/titulos/:id](./trailerflix/src/routes/actores/getById.js) | Listado de tags que corresponden al **titulo** indicado por *id* |
-| GET | [/ranking](./trailerflix/src/routes/ranking/getAll.js) | Listado de **Rankings** disponibles |
-| GET | [/ranking/:id](./trailerflix/src/routes/ranking/getByTituloId.js) | Listado de **rankings** que corresponden al titulo indicado por *id* |
+| GET | [/titulos]() | Catalogo de **Trailerflix** |
+| GET | [/titulos/:id]() | Busqueda de **Titulo** por *id* |
+| GET | [/titulos/reparto/:id]() | Busqueda de ***Reparto*** de un **Titulo** por *id* |
+| GET | [/titulos/categoria/:categoria]() | Busqueda de **Titulos** por ***Categoria*** |
+| GET | [/titulos/resumen/:palabra]() | Listado de **Titulos** cuyo resumen incluya *:palabra*|
+| GET | [/titulos/cantidad](s) | **Cantidad** de *Series* y *Peliculas* en Trailerflix |
+| GET | [/titulos/series/:temporadas]() | Listado de **Series** que tengan menos temporadas que el numero indicado por *:temporadas*|
+| GET | [/generos]() | Listado de **Generos** disponibles|
+| GET | [/generos/:id]() | Listado de ***Titulos*** que corresponden al **Genero** indicado por *id* |
+| GET | [/actores]() | Listado de **Actores/Actrices** |
+| GET | [/actores/:id]() | Busqueda de **Actor** por *id*|
+| GET | [/actores/nombre/:nombre]() | Busqueda de **Actores** cuyo nombre y/o apellido coincida con *nombre*|
+| GET | [/actores/titulos/:id]() | Listado de **Titulos** donde participo el ***Actor*** indicado por *id* |
+| GET | [/tags]() | Listado de **Tags** disponibles |
+| GET | [/tags/:id]() | Listado de **Titulos** que corresponden al ***Tag*** indicado por *id* |
+| GET | [/tags/titulos/:id]() | Listado de **Tags** que corresponden al ***Titulo*** indicado por *id* |
+| GET | [/ranking]() | Listado de **Rankings** disponibles |
+| GET | [/ranking/:id]() | Listado de **Rankings** que corresponden al ***Titulo*** indicado por *id* |
 
 -----------
 ## Titulos
