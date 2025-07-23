@@ -14,12 +14,15 @@
         - [Listado de Series](#listado-de-series)
         - [Listado de Peliculas](#listado-de-series)
         - [Busqueda de Titulo por Resumen](#busqueda-de-titulos-por-resumen)
+        - [Cantidad de Series y Peliculas](#cantidad-de-series-y-peliculas)
+        - [Listado de Series por Temporada](#listado-de-series-por-cantidad-de-temporadas)
     - [Generos](#generos)
         - [Listado de Generos](#listado-de-generos)
         - [Busqueda de Titulos por Genero](#busqueda-de-titulos-por-genero)
     - [Actores](#actores)
         - [Listado de Actores](#listado-de-actores)
         - [Busqueda de Actor](#listado-de-actores)
+        - [Busqueda de Actor por Nombre](#busqueda-de-actor-por-nombre)
         - [Busqueda de Titulos por Actor](#busqueda-de-titulos-por-actor)
     - [Tags](#tags)
         - [Listado de Tags](#listado-de-tags)
@@ -65,13 +68,16 @@ DB_PASS= Contraseña de MySQL
 | GET | [/titulos](./trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
 | GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de **titulo** por *id* |
 | GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Reparto de un **titulo** por su *id* |
-| GET | [/titulos/series](./trailerflix/src/routes/titulos/getAllSeries.js) | Listado de **Series** |
-| GET | [/titulos/peliculas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de **Peliculas**|
+| GET | [/titulos/categoria/series](./trailerflix/src/routes/titulos/getAllSeries.js) | Listado de **Series** |
+| GET | [/titulos/categoria/peliculas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de **Peliculas**|
 | GET | [/titulos/resumen/:palabra](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de titulos cuyo resumen incluya la palabra *:palabra*|
+| GET | [/titulos/cantidad](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Cantidad de **Series** y **Peliculas** en Trailerflix |
+| GET | [/titulos/series/:temporadas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de series que tengan menos temporadas el numero indicado por *:temporadas*, ordenado de forma descendente|
 | GET | [/generos](./trailerflix/src/routes/generos/getAll.js) | Listado de **Generos** disponibles|
 | GET | [/generos/:id](./trailerflix/src/routes/generos/getById.js) | Listado de titulos que corresponden al **genero** indicado por *id* |
 | GET | [/actores](./trailerflix/src/routes/actores/getAll.js) | Listado de **Actores/Actrices** |
 | GET | [/actores/:id](./trailerflix/src/routes/actores/getById.js) | Busqueda de **actor** por *id*|
+| GET | [/actores/nombre/:nombre](./trailerflix/src/routes/actores/getById.js) | Busqueda de actores cuyo nombre y/o apellido coincida con *nombre*|
 | GET | [/actores/titulos/:id](./trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el **actor/actriz** indicado por *id* |
 | GET | [/tags](./trailerflix/src/routes/tags/getAll.js) | Listado de **Tags** disponibles |
 | GET | [/tags/:id](./trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al **tag** indicado por *id* |
@@ -140,14 +146,14 @@ GET `/titulos/reparto/8`
 ### Listado de Series
 Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer.
 ```bash
-GET `/titulos/series`
+GET `/titulos/categoria/series`
 ```
 
 -------------------------------
 ### Listado de Peliculas
 Listado de todas las peliculas, cada una con su nombre, resumen, duración y trailer.
 ```bash
-GET `/titulos/peliculas`
+GET `/titulos/categoria/peliculas`
 ```
 
 ----------------------------------
@@ -187,6 +193,30 @@ GET `/titulos/resumen/mision`
     "Genero": "Aventura"
   }
 },
+...
+```
+------------------------
+### Cantidad de Series y Peliculas
+Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden
+descendente
+```bash 
+GET `/titulos/series/:cantidad`
+```
+
+------------------------
+### Listado de Series por cantidad de temporadas
+Cantidad de Series y Peliculas registradas actualmente en trailerflix
+```bash 
+GET `/titulos/series/:temporadas`
+```
+
+**Ejemplo:**
+```bash 
+GET `/titulos/series/3`
+```
+*Devuelve:*
+```javascript 
+...
 ...
 ```
 
@@ -253,6 +283,23 @@ GET `/actores/78`
   "id": 78,
   "nombreCompleto": "Tom Braidwood"
 }
+```
+----------------------
+### Busqueda de Actor por nombre
+Listado de actores cuyo nombre y/o apellido contenga la palabra indicada por parametro `:nombre`
+
+```bash
+GET `/actores/nombre/:nombre`
+```
+
+**Ejemplo:**
+```bash 
+GET `/actores/nombre/chris`
+```
+*Devuelve:*
+```javascript 
+
+...
 ```
 
 

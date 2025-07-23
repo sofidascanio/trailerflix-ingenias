@@ -6,7 +6,7 @@ const Categoria = require('../../models/categoria.js');
 const Genero = require('../../models/genero.js');
 
 // GET /titulos/:id
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const tituloId = req.params.id;
         const titulo = await Titulo.findByPk(tituloId);

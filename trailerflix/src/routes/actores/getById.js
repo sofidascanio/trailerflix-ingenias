@@ -4,7 +4,7 @@ const router = express.Router();
 const Actor = require('../../models/actor.js');
 
 // GET /actores/:id
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const actorId = req.params.id;
         const actor = await Actor.findByPk(actorId);

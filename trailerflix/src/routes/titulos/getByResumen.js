@@ -8,7 +8,7 @@ const Categoria = require('../../models/categoria.js');
 const Genero = require('../../models/genero.js');
 
 // GET /titulos/resumen/:palabra
-router.get('/resumen/:palabra', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const palabra = req.params.palabra;
 

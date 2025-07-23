@@ -1,20 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
+const { Op } = require('sequelize');
+
 const Titulo = require('../../models/titulo.js');
 const Categoria = require('../../models/categoria.js');
 
-// GET /titulos/categoria/series
-router.get('/categoria/series', async (req, res) => {
+// GET /titulos/series/:cantidad
+router.get('/', async (req, res) => {
+    const cantidad = parseFloat(req.params.cantidad);
+
+    if (isNaN(cantidad)){
+        return res.status(400).send('Debe ingresar un numero');
+    }
+
     try {
-        // busco categoria 
         const categoria = await Categoria.findOne({ where: { nombreCategoria: 'Serie' } });
 
-        // attributes para alias
-        // where para where normal
         const series = await Titulo.findAll({
             attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['temporadas', 'Temporadas'], ['trailer', 'Trailer'], ],
-            where: { idCategoria: categoria.id }
+            where: { idCategoria: categoria.id, temporadas: { [Op.lt]: cantidad } },
+            order: [ ['temporadas', 'DESC'] ]
         });
 
         res.json(series);

@@ -6,7 +6,6 @@ const Titulo = require('../../models/titulo.js');
 // GET /titulos
 router.get('/', async (req, res) => {
     try {
-        console.log("get all");
         const titulos = await Titulo.findAll({
             attributes: [ ['id', 'ID'], ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['trailer', 'Trailer'], ],
         });

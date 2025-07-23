@@ -5,7 +5,7 @@ const Titulo = require('../../models/titulo.js');
 const Ranking = require('../../models/ranking.js');
 
 // GET /ranking/:id
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     // devuelvo todos los rankings de un titulo, no es busqueda de id de ranking
     try {
         const tituloId = req.params.id;

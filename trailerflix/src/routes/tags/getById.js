@@ -6,7 +6,7 @@ const Tag = require('../../models/tag.js');
 const TagsTitulos = require('../../models/tagstitulos.js');
 
 // GET /tags/:id
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const tagId = req.params.id;
         const tag = await Tag.findByPk(tagId);
