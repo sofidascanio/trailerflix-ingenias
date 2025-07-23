@@ -87,14 +87,14 @@ DB_PASS= Contraseña de MySQL
 -----------
 ## Titulos
 ### Listado de Titulos
-Catalogo de trailerflix, cada pelicula/serie con su ID, nombre, resumen y trailer.
+Catalogo de trailerflix, cada pelicula/serie con su **id**, **nombre**, **resumen** y **trailer**.
 ``` 
 GET `/titulos`
 ```
 
 -----------------
 ### Busqueda de Titulo
-Busqueda de un titulo indicado por *id*
+Busqueda de un titulo indicado por *id*, devuelve el **nombre**, **resumen**, **temporadas/duración**(*serie/pelicula*), **genero** y **categoria** del titulo.
 ``` 
 GET `/titulos/:id`
 ```
@@ -117,7 +117,7 @@ GET `/titulos/5`
 
 -------------------------
 ### Busqueda de Reparto por Titulo
-Reparto (todos los actores y actrices que trabajaron) de un titulo indicado por *id*
+Reparto (todos los actores y actrices que trabajaron) de un titulo indicado por *id*, devuelve **nombre** del *titulo*, listado de ***actores***, cada uno con su **id** y **nombre**
 ``` 
 GET `/titulos/reparto/:id`
 ```
@@ -165,7 +165,8 @@ GET `/titulos/reparto/8`
 Listado de todos los titulos que correspondan a la categoria indicada por `:categoria`. El parametro puede tener dos valores:
 * `serie`: Listado de **Series**
 * `pelicula`: Listado de **Peliculas**
-Cada serie o pelicula se muestra con: ID, nombre, resumen, temporadas/duracion (segun corresponda) y trailer.
+
+Cada serie o pelicula se muestra con: **id**, **nombre**, **resumen**, **temporadas/duracion** (*serie/pelicula*) y **trailer**.
 ```bash
 GET `/titulos/categoria/:categoria`
 ```
@@ -173,7 +174,7 @@ GET `/titulos/categoria/:categoria`
 ----------------------------------
 ### Busqueda de Titulos por resumen
 
-Listado de titulos cuyo resumen contenga la palabra indicada por parametro `:palabra`
+Listado de titulos cuyo resumen contenga la palabra indicada por parametro `:palabra`, cada titulo con su **id**, **nombre**, **resumen**, **trailer**, **categoria** y **genero**.
 
 ```bash
 GET `/titulos/resumen/:palabra`
@@ -219,7 +220,7 @@ GET `/titulos/cantidad`
 ```
 ------------------------
 ### Listado de Series por cantidad de temporadas
-Listado de todas las series, cada una con su ID, nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden descendente.
+Listado de todas las series que tengan menos temporadas que `:temporadas`, cada una con su **id**, **nombre**, **resumen**, **temporadas** y **trailer**, ordenado por la cantidad de *temporadas* en **orden descendente**.
 ```bash 
 GET `/titulos/series/:temporadas`
 ```
@@ -231,12 +232,14 @@ GET `/titulos/series/3`
 *Devuelve:*
 ```javascript 
 {
+  "ID": 1,
   "Nombre": "The Mandalorian",
   "Resumen": "Ambientada tras la caída del Imperio y antes de la aparición de la Primera Orden, la Serie sigue los pasos de un pistolero solitario en las aventuras que protagoniza en los confines de la galaxia, donde no alcanza la autoridad de la Nueva República.",
   "Temporadas": "2",
   "Trailer": "https://www.youtube.com/embed/aOC8E8z_ifw"
 },
 {
+  "ID": 13,
   "Nombre": "Anne with an 'E'",
   "Resumen": "Anne Shirley es una niña huérfana que vive en un pequeño pueblo llamado Avonlea que pertenece a la Isla del Príncipe Eduardo, en el año 1890. Después de una infancia difícil, donde fue pasando de orfanato a hogares de acogida, es enviada por error a vivir con una solterona y su hermano. Cuando cumple 13 años, Anne va a conseguir transformar su vida y el pequeño pueblo donde vive gracias a su fuerte personalidad, intelecto e imaginación. Basada en la inolvidable novela.",
   "Temporadas": "2",
@@ -248,14 +251,14 @@ GET `/titulos/series/3`
 ----------------------------
 ## Generos
 ### Listado de Generos
-Listado con todos los generos disponibles en el modelo, cada uno con su ID y nombre.
+Listado con todos los **generos** disponibles en el modelo, cada uno con su **id** y **nombre**.
 ```bash 
 GET `/generos`
 ```
 
 ---------------------------
 ### Busqueda de Titulos por Genero
-Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*
+Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*, cada titulo con su **id** y **nombre**.
 ```bash 
 GET `/generos/:id`
 ```
@@ -290,7 +293,7 @@ GET `/generos/8`
 ---------------------------
 ## Actores
 ### Listado de Actores
-Listado de todos los actores/actrices registrados en el sistemas.
+Listado de todos los actores/actrices registrados en el sistemas, cada uno con su **id** y **nombre**.
 ```bash 
 GET `/actores`
 ```
@@ -298,7 +301,7 @@ GET `/actores`
 
 ---------------------------
 ### Busqueda de Actor
-Busqueda de un actor indicado por *id*
+Busqueda de un actor indicado por *id*, devuelve **nombre completo**
 ```bash 
 GET `/actores`
 ```
@@ -311,13 +314,12 @@ GET `/actores/78`
 *Devuelve:*
 ``` javascript
 {
-  "id": 78,
-  "nombreCompleto": "Tom Braidwood"
+  "Nombre Completo": "Tom Braidwood"
 }
 ```
 ----------------------
 ### Busqueda de Actor por nombre
-Listado de actores cuyo nombre y/o apellido contenga la palabra indicada por parametro `:nombre`
+Listado de actores cuyo nombre y/o apellido contenga la palabra indicada por parametro `:nombre`, devuelve **id** y **nombre**.
 
 ```bash
 GET `/actores/nombre/:nombre`
@@ -347,7 +349,7 @@ GET `/actores/nombre/chris`
 
 ---------------------------
 ### Busqueda de Titulos por Actor
-Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*, cada titulo con su id, nombre, categoria y genero.
+Listado de todos los titulos (peliculas/series) donde participo el actor/actriz indicado por *id*, devuelve **nombre** del actor y cada titulo con su **id**, **nombre**, **categoria** y **genero**.
 ```bash 
 GET `/actores/titulo/:id`
 ```
@@ -382,14 +384,14 @@ GET `/actores/titulos/1`
 ---------------------------
 ## Tags
 ### Listado de Tags
-Listado con todos los tags disponibles en el modelo, cada uno con su ID y nombre.
+Listado con todos los tags disponibles en el modelo, cada uno con su **id** y **nombre**.
 ```bash 
 GET `/tags`
 ```
 
 ---------------------------
 ### Busqueda de Titulos por Tag
-Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*, con su ID y nombre.
+Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*, devuelve **nombre** del tag y cada titulo con su **id** y **nombre**.
 ```bash 
 GET `/tags/:id`
 ```
@@ -418,7 +420,7 @@ GET `/tags/7`
 ```
 -------------
 ### Busqueda de Tags por Titulo
-Listado con todos los tags que correspondan al titulo indicado por *id*
+Listado con todos los tags que correspondan al titulo indicado por *id*, devuelve **nombre** del titulo y cada tag con su **id** y **nombre**
 ```bash 
 GET `/tags/titulos/:id`
 ```
@@ -452,14 +454,14 @@ GET `/tags/titulos/45`
 ---------------
 ## Ranking
 ### Listado de Ranking
-Listado con todos los rankings disponibles en el modelo, cada uno con su ID, nombre del titulo al que corresponde, ID del titulo, calificación, y comentarios.
+Listado con todos los rankings disponibles en el modelo, cada uno con su **id**, **nombre** del *titulo* al que corresponde, **id** del *titulo*, **calificación**, y **comentarios**.
 ```bash 
 GET `/ranking`
 ```
 
 -----------------
 ### Busqueda de Rankings por Titulo
-Listado con todos ranking que correspondan al titulo indicado por *id*, cada titulo con su ID y nombre.
+Listado con todos ranking que correspondan al titulo indicado por *id*, devuelve **calificacion**, **comentarios** y cada titulo con su **id** y **nombre**.
 ```bash 
 GET `/ranking/:id`
 ```

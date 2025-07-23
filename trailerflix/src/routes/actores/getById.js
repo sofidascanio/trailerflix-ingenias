@@ -13,7 +13,11 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'Actor no encontrado' });
         }
 
-        res.json(actor);
+        actorResultado = {
+            'Nombre Completo': actor.nombreCompleto
+        };
+
+        res.json(actorResultado);
 
     } catch (error) {
         console.error('Error al buscar el actor:', error);
