@@ -38,7 +38,7 @@ const Titulo = sequelize.define('Titulo', {
     },
     },
     {
-        tableName: 'Titulos',
+        tableName: 'titulos',
         timestamps: false,
 });
 

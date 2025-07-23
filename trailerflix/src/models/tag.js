@@ -11,7 +11,7 @@ const Tag = sequelize.define('Tag', {
     },
     },
     {
-        tableName: 'Tags',
+        tableName: 'tags',
         timestamps: false,
 });
 

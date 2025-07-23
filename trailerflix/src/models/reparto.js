@@ -27,7 +27,7 @@ const Reparto = sequelize.define('Reparto', {
     },
     },
     {
-        tableName: 'Reparto',
+        tableName: 'reparto',
         timestamps: false,
 });
 

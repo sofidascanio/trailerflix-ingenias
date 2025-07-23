@@ -11,7 +11,7 @@ const Genero = sequelize.define('Genero', {
     },
     },
     {
-        tableName: 'Generos',
+        tableName: 'generos',
         timestamps: false,
 });
 
