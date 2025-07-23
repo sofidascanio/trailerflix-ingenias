@@ -7,10 +7,12 @@ host = process.env.DB_HOST;
 database = process.env.DB_NAME;
 username = process.env.DB_USER;
 password = process.env.DB_PASS;
+db_port = process.env.DB_PORT;
 
 const sequelize = new Sequelize (database, username, password, {
 	host: host,
 	dialect: 'mysql',
+    port: db_port,
     // esto dice la consola que no es valido, no rompe nada pero por las dudas lo comento
 	// dialectOptions: { options: { encrypt: true } },
 	define: { timestamps: false }
