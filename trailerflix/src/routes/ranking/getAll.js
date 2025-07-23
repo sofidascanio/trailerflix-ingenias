@@ -8,7 +8,7 @@ const Ranking = require('../../models/ranking.js');
 router.get('/', async (req, res) => {
     try {
         const rankings = await Ranking.findAll({
-            attributes: [ ['calificacion', 'Calificación'], ['Comentarios', 'Comentarios'] ],
+            attributes: [ ['calificacion', 'Calificación'], ['Comentarios', 'Comentarios'], ['idTitulo', 'ID Titulo'] ],
             include: [{ model: Titulo, attributes: [['titulo', 'Nombre']] }]
         });
 

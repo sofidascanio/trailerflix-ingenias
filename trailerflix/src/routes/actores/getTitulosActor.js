@@ -8,29 +8,30 @@ const Categoria = require('../../models/categoria.js');
 const Genero = require('../../models/genero.js');
 
 // GET /actores/titulos/:id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const actorId = req.params.id;
         const actor = await Actor.findByPk(actorId);
 
         if (!actor) {
-            res.status(404).json({ error: 'Actor no encontrado' })
+            return res.status(404).json({ error: 'Actor no encontrado' })
         }
 
-        // faltaria categoria + genero por cada titulo
         const reparto = await Reparto.findAll({
             where: { idActor: actor.id },
             include: [ { model: Actor, attributes: ['nombreCompleto'] },
-                    { model: Titulo, attributes: ['titulo'],
+                       { model: Titulo, attributes: ['titulo'],
                             include: [
                                 { model: Categoria, attributes: ['nombreCategoria'] },
                                 { model: Genero, attributes: ['nombreGenero'] }
                             ] 
-                    } ]
+                        } ]
         });
 
         const nombreActor = reparto[0].Actor.nombreCompleto;
-        const titulos = reparto.map(r => r.Titulo.titulo, r.Titulo.nombreCategoria, r.Genero.nombreGenero);
+
+        // sequelize pluraliza a "categoria" como "categorium", por el doble include, lo conecta a "titulo" pero con el nombre "categorium"
+        const titulos = reparto.map(r => ({ titulo: r.Titulo.titulo, categoria: r.Titulo.Categorium.nombreCategoria, genero: r.Titulo.Genero.nombreGenero }));
 
         actorTitulos = {
             'Nombre': nombreActor,

@@ -6,7 +6,7 @@ const Categoria = require('../../models/categoria.js');
 const Genero = require('../../models/genero.js');
 
 // GET /titulos/:id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const tituloId = req.params.id;
         const titulo = await Titulo.findByPk(tituloId);
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         // falta buscar tags y traerlos
 
         if (categoria.nombreCategoria === "Serie") {
-            t = {
+            tituloResultado = {
                 'Nombre': titulo.titulo,
                 'Resumen': titulo.resumen,
                 'Temporadas': titulo.temporadas,
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
                 'Categoria': categoria.nombreCategoria      
             };
         } else {
-            t = {
+            tituloResultado = {
                 'Nombre': titulo.titulo,
                 'Resumen': titulo.resumen,
                 'Duración': titulo.duracion,
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
             };
         }
 
-        res.json(t);
+        res.json(tituloResultado);
 
     } catch (error) {
         console.error('Error al buscar el titulo:', error);

@@ -6,9 +6,11 @@ const { Op } = require('sequelize');
 const Titulo = require('../../models/titulo.js');
 const Categoria = require('../../models/categoria.js');
 
-// GET /titulos/series/:cantidad
-router.get('/', async (req, res) => {
-    const cantidad = parseFloat(req.params.cantidad);
+// GET /titulos/series/:temporadas
+router.get('/:temporadas', async (req, res) => {
+    const cantidad = parseFloat(req.params.temporadas);
+
+    console.log("Entra al series");
 
     if (isNaN(cantidad)){
         return res.status(400).send('Debe ingresar un numero');

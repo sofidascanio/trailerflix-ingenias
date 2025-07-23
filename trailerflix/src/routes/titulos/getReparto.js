@@ -6,7 +6,7 @@ const Reparto = require('../../models/reparto.js');
 const Actor = require('../../models/actor.js');
 
 // GET /titulos/reparto/:id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         console.log("Hola");
         const tituloId = req.params.id;

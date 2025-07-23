@@ -6,10 +6,9 @@ const { Op } = require('sequelize');
 const Actor = require('../../models/actor.js');
 
 // GET /actores/nombre/:nombre
-router.get('/', async (req, res) => {
+router.get('/:nombre', async (req, res) => {
     try {
         const nombre = req.params.nombre;
-        console.log(nombre);
 
         const actores = await Actor.findAll({
             attributes: [['id', 'ID'], ['nombreCompleto', 'Nombre'], ],

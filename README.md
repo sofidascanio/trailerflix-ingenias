@@ -11,6 +11,7 @@
         - [Listado de Titulos](#listado-de-titulos)
         - [Busqueda de Titulo](#busqueda-de-titulo)
         - [Busqueda de Reparto por Titulo](#busqueda-de-reparto-por-titulo)
+        - [Busqueda por Categoria](#busqueda-de-titulos-por-categoria)
         - [Listado de Series](#listado-de-series)
         - [Listado de Peliculas](#listado-de-series)
         - [Busqueda de Titulo por Resumen](#busqueda-de-titulos-por-resumen)
@@ -26,7 +27,8 @@
         - [Busqueda de Titulos por Actor](#busqueda-de-titulos-por-actor)
     - [Tags](#tags)
         - [Listado de Tags](#listado-de-tags)
-        - [Busqueda de Tags por Genero](#busqueda-de-tags-por-genero)
+        - [Busqueda de Titulos por Tag](#busqueda-de-titulos-por-tag)
+        - [Busqueda de Tags por Titulo](#busqueda-de-tags-por-titulo)
     - [Ranking](#ranking)
         - [Listado de Ranking](#listado-de-ranking)
         - [Busqueda de Rankings por Titulo](#busqueda-de-rankings-por-titulo)
@@ -68,8 +70,7 @@ DB_PASS= Contraseña de MySQL
 | GET | [/titulos](./trailerflix/src/routes/titulos/getAll.js) | Catalogo de **Trailerflix** |
 | GET | [/titulos/:id](./trailerflix/src/routes/titulos/getById.js) | Busqueda de **titulo** por *id* |
 | GET | [/titulos/reparto/:id](./trailerflix/src/routes/titulos/getReparto.js) | Reparto de un **titulo** por su *id* |
-| GET | [/titulos/categoria/series](./trailerflix/src/routes/titulos/getAllSeries.js) | Listado de **Series** |
-| GET | [/titulos/categoria/peliculas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de **Peliculas**|
+| GET | [/titulos/categoria/:categoria](./trailerflix/src/routes/titulos/getAllSeries.js) | Busqueda de titulos por **Categoria** |
 | GET | [/titulos/resumen/:palabra](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de titulos cuyo resumen incluya la palabra *:palabra*|
 | GET | [/titulos/cantidad](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Cantidad de **Series** y **Peliculas** en Trailerflix |
 | GET | [/titulos/series/:temporadas](./trailerflix/src/routes/titulos/getAllPeliculas.js) | Listado de series que tengan menos temporadas el numero indicado por *:temporadas*, ordenado de forma descendente|
@@ -81,6 +82,7 @@ DB_PASS= Contraseña de MySQL
 | GET | [/actores/titulos/:id](./trailerflix/src/routes/actores/getTitulosActor.js) | Listado de titulos donde participo el **actor/actriz** indicado por *id* |
 | GET | [/tags](./trailerflix/src/routes/tags/getAll.js) | Listado de **Tags** disponibles |
 | GET | [/tags/:id](./trailerflix/src/routes/actores/getById.js) | Listado de titulos que corresponden al **tag** indicado por *id* |
+| GET | [/tags/titulos/:id](./trailerflix/src/routes/actores/getById.js) | Listado de tags que corresponden al **titulo** indicado por *id* |
 | GET | [/ranking](./trailerflix/src/routes/ranking/getAll.js) | Listado de **Rankings** disponibles |
 | GET | [/ranking/:id](./trailerflix/src/routes/ranking/getByTituloId.js) | Listado de **rankings** que corresponden al titulo indicado por *id* |
 
@@ -143,17 +145,13 @@ GET `/titulos/reparto/8`
 ```
 
 -----------------------------
-### Listado de Series
-Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer.
-```bash
-GET `/titulos/categoria/series`
-```
+### Busqueda de Titulos por Categoria
+Listado de todos los titulos que correspondan a la categoria indicada por `:categoria`. El parametro puede tener dos valores:
+* `serie`: Listado de **Series**
+* `pelicula`: Listado de **Peliculas**
 
--------------------------------
-### Listado de Peliculas
-Listado de todas las peliculas, cada una con su nombre, resumen, duración y trailer.
 ```bash
-GET `/titulos/categoria/peliculas`
+GET `/titulos/categoria/:categoria`
 ```
 
 ----------------------------------
@@ -197,15 +195,15 @@ GET `/titulos/resumen/mision`
 ```
 ------------------------
 ### Cantidad de Series y Peliculas
-Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden
-descendente
+Cantidad de Series y Peliculas registradas actualmente en trailerflix
 ```bash 
-GET `/titulos/series/:cantidad`
+GET `/titulos/cantidad`
 ```
-
 ------------------------
 ### Listado de Series por cantidad de temporadas
 Cantidad de Series y Peliculas registradas actualmente en trailerflix
+Listado de todas las series, cada una con su nombre, resumen, cantidad de temporadas y trailer, ordenado por la cantidad de temporadas indicada por `:cantidad` en orden descendente
+
 ```bash 
 GET `/titulos/series/:temporadas`
 ```
@@ -216,11 +214,22 @@ GET `/titulos/series/3`
 ```
 *Devuelve:*
 ```javascript 
-...
+{
+  "Nombre": "The Mandalorian",
+  "Resumen": "Ambientada tras la caída del Imperio y antes de la aparición de la Primera Orden, la Serie sigue los pasos de un pistolero solitario en las aventuras que protagoniza en los confines de la galaxia, donde no alcanza la autoridad de la Nueva República.",
+  "Temporadas": "2",
+  "Trailer": "https://www.youtube.com/embed/aOC8E8z_ifw"
+},
+{
+  "Nombre": "Anne with an 'E'",
+  "Resumen": "Anne Shirley es una niña huérfana que vive en un pequeño pueblo llamado Avonlea que pertenece a la Isla del Príncipe Eduardo, en el año 1890. Después de una infancia difícil, donde fue pasando de orfanato a hogares de acogida, es enviada por error a vivir con una solterona y su hermano. Cuando cumple 13 años, Anne va a conseguir transformar su vida y el pequeño pueblo donde vive gracias a su fuerte personalidad, intelecto e imaginación. Basada en la inolvidable novela.",
+  "Temporadas": "2",
+  "Trailer": "https://www.youtube.com/embed/M4T-_aB8smU"
+},
 ...
 ```
-
----------------------------
+-----
+----------------------------
 ## Generos
 ### Listado de Generos
 Listado con todos los generos disponibles en el modelo, cada uno con su ID y nombre.
@@ -255,7 +264,7 @@ GET `/generos/8`
   ]
 }
 ```
-
+------
 ---------------------------
 ## Actores
 ### Listado de Actores
@@ -298,7 +307,18 @@ GET `/actores/nombre/chris`
 ```
 *Devuelve:*
 ```javascript 
-
+{
+  "ID": 3,
+  "Nombre": "Chris Bartlett"
+},
+{
+  "ID": 39,
+  "Nombre": "Chris Evans"
+},
+{
+  "ID": 41,
+  "Nombre": "Chris Hemsworth"
+},
 ...
 ```
 
@@ -326,7 +346,7 @@ GET `/actores/titulos/1`
 }
 ```
 
-
+---------
 ---------------------------
 ## Tags
 ### Listado de Tags
@@ -335,9 +355,8 @@ Listado con todos los tags disponibles en el modelo, cada uno con su ID y nombre
 GET `/tags`
 ```
 
-
 ---------------------------
-### Busqueda de Tags por Genero
+### Busqueda de Titulos por Tag
 Listado con todos titulos (peliculas/series) que correspondan al tag indicado por *id*
 ```bash 
 GET `/tags/:id`
@@ -366,6 +385,30 @@ GET `/tags/7`
   ]
 }
 ```
+-------------
+### Busqueda de Tags por Titulo
+Listado con todos los tags que correspondan al titulo indicado por *id*
+```bash 
+GET `/tags/titulos/:id`
+```
+
+**Ejemplo:**
+```bash 
+GET `/tags/titulos/45`
+```
+
+*Devuelve:*
+``` javascript
+{
+  "Titulo": "It (eso)",
+  "Tags": [
+    "Terror",
+    "Suspenso",
+    "Drama"
+  ]
+}
+```
+---------
 ---------------
 ## Ranking
 ### Listado de Ranking
@@ -383,10 +426,23 @@ GET `/ranking/:id`
 
 **Ejemplo:**
 ```bash 
-GET `/ranking/7`
+GET `/ranking/2`
 ```
 
 *Devuelve:*
 ``` javascript
-
+{
+  "Calificación": 3,
+  "Comentarios": "Buena",
+  "Titulo": {
+    "Nombre": "The Umbrella Academy"
+  }
+},
+{
+  "Calificación": 2,
+  "Comentarios": "Maso",
+  "Titulo": {
+    "Nombre": "The Umbrella Academy"
+  }
+}
 ```

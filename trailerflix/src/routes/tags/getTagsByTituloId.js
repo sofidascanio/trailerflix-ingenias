@@ -5,36 +5,30 @@ const Titulo = require('../../models/titulo.js');
 const Tag = require('../../models/tag.js');
 const TagsTitulos = require('../../models/tagstitulos.js');
 
-// GET /tags/:id
+// GET /tags/titulo/:id
 router.get('/:id', async (req, res) => {
     try {
-        const tagId = req.params.id;
-        const tag = await Tag.findByPk(tagId);
+        const tituloId = req.params.id;
+        const titulo = await Titulo.findByPk(tituloId);
 
-        if (!tag) {
-            res.status(404).json({ error: 'Tag no encontrado' })
+        if (!titulo) {
+            res.status(404).json({ error: 'Titulo no encontrado' })
         }
-
-        // tags - tagstitulos - titulos
-
-        //mostrar todos los titulos con este tag
 
         const tagst = await TagsTitulos.findAll({
             include: [{ model: Titulo, attributes: ['titulo'] }, 
                       { model: Tag, attributes: ['nombreTag'] }],
+            where: { idTitulo: titulo.id },
         });
 
-        const nombreTag = tagst[0].Tag.nombreTag;
-        // set para que no tenga duplicados
-        // ... para quede array plano
-        const titulos = [...new Set(tagst.map(tt => tt.Titulo.titulo))];
+        const tags = tagst.map(r => r.Tag.nombreTag)
 
-        tagsConTitulos = {
-            'Nombre': nombreTag,
-            'Titulos': titulos
+        tagsDelTitulo = {
+            'Titulo': titulo.titulo,
+            'Tags': tags
         };
         
-        res.json(tagsConTitulos);
+        res.json(tagsDelTitulo);
 
     } catch (error) {
         console.error('Error:', error);

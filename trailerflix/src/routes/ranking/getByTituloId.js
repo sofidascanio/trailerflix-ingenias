@@ -5,7 +5,7 @@ const Titulo = require('../../models/titulo.js');
 const Ranking = require('../../models/ranking.js');
 
 // GET /ranking/:id
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     // devuelvo todos los rankings de un titulo, no es busqueda de id de ranking
     try {
         const tituloId = req.params.id;
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         const rankings = await Ranking.findAll({
             attributes: [ ['calificacion', 'Calificación'], ['Comentarios', 'Comentarios'] ],
             include: [{ model: Titulo, attributes: [['titulo', 'Nombre']] }],
-            where: { id: tituloId },
+            where: { idTitulo: tituloId },
         });
 
         res.json(rankings);
