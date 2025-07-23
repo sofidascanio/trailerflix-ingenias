@@ -16,11 +16,13 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'Titulo no encontrado' })
         }
 
+        // busco todos los actores que trabajaron en titulo :id
         const reparto = await Reparto.findAll({
             where: { idTitulo: titulo.id },
             include: { model: Actor, attributes: ['nombreCompleto'] }
         });
 
+        // mapeo para quedarme con los nombres en un array
         const actores = reparto.map(r => r.Actor.nombreCompleto)
 
         repartoTitulo = {

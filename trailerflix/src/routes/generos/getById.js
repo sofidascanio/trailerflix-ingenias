@@ -19,6 +19,7 @@ router.get('/:id', async (req, res) => {
             where: { idGenero: genero.id },
         });
 
+        // mapeo para quedarme solo con los titulos en un array 
         const titulosGeneros = titulos.map(t => t.titulo)
 
         titulosDelGenero = {

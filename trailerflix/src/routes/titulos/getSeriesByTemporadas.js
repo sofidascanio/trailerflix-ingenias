@@ -17,6 +17,8 @@ router.get('/:temporadas', async (req, res) => {
     try {
         const categoria = await Categoria.findOne({ where: { nombreCategoria: 'Serie' } });
 
+        // busco todas las series con cantidad de temporadas menor a :cantidad
+        // devuelvo en orden descendente
         const series = await Titulo.findAll({
             attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['temporadas', 'Temporadas'], ['trailer', 'Trailer'], ],
             where: { idCategoria: categoria.id, temporadas: { [Op.lt]: cantidad } },

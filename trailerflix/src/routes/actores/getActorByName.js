@@ -10,6 +10,7 @@ router.get('/:nombre', async (req, res) => {
     try {
         const nombre = req.params.nombre;
 
+        // operador like para matchear
         const actores = await Actor.findAll({
             attributes: [['id', 'ID'], ['nombreCompleto', 'Nombre'], ],
             where: { nombreCompleto: { [Op.like]: `%${nombre}%` } },

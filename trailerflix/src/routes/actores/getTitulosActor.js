@@ -17,6 +17,9 @@ router.get('/:id', async (req, res) => {
             return res.status(404).json({ error: 'Actor no encontrado' })
         }
 
+        // actor <- reparto -> titulo -> (categoria, genero)
+        // me paro en reparto, "voy" a actor y titulo, de actor tomo el nombreCompleto
+        // de titulo tomo el "titulo" y tambien busco nombreCategoria y nombreGenero desde su sus tablas (doble include)
         const reparto = await Reparto.findAll({
             where: { idActor: actor.id },
             include: [ { model: Actor, attributes: ['nombreCompleto'] },
@@ -30,6 +33,7 @@ router.get('/:id', async (req, res) => {
 
         const nombreActor = reparto[0].Actor.nombreCompleto;
 
+        // mapeo para tomar de cada titulo: titulo, categoria, genero, y que quede en un array 
         // sequelize pluraliza a "categoria" como "categorium", por el doble include, lo conecta a "titulo" pero con el nombre "categorium"
         const titulos = reparto.map(r => ({ titulo: r.Titulo.titulo, categoria: r.Titulo.Categorium.nombreCategoria, genero: r.Titulo.Genero.nombreGenero }));
 

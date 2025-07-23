@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
         const rankings = await Ranking.findAll({
             attributes: [ ['calificacion', 'Calificación'], ['Comentarios', 'Comentarios'] ],
             include: [{ model: Titulo, attributes: [['titulo', 'Nombre']] }],
-            where: { idTitulo: tituloId },
+            where: { idTitulo: titulo.id },
         });
 
         res.json(rankings);

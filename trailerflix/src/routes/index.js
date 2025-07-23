@@ -29,7 +29,7 @@ router.use('/generos', getTituloByGeneroId);
 
 router.use('/actores/titulos', getTitulosActorById);
 router.use('/actores/nombre', getActorByName);
-router.use('/actores/:id', getActorById);
+router.use('/actores', getActorById);
 router.use('/actores', getAllActores);
 
 router.use('/titulos/series', getSeriesByTemporadas);

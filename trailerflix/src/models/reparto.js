@@ -9,12 +9,6 @@ const Reparto = sequelize.define('Reparto', {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
-    // idTitulo: {
-    //     type: DataTypes.INTEGER, defaultValue: null
-    // },
-    // idActor: {
-    //     type: DataTypes.INTEGER, defaultValue: null
-    // },
     idTitulo: {
         type: DataTypes.INTEGER,
             references: {

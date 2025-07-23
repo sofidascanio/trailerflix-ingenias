@@ -11,13 +11,13 @@ router.get('/:categoria', async (req, res) => {
     try {
         const nombre = req.params.categoria;
 
+        // busco categoria por nombre
         const categoria = await Categoria.findOne({ where: { nombreCategoria: nombre } });
 
         if (!categoria) {
             res.status(404).json({ error: "La categoria debe ser 'serie' o 'pelicula'" })
         }
 
-        // Falta agregar los tags de cada una
         if (categoria.nombreCategoria === "pelicula") {
             const peliculas = await Titulo.findAll({
                 attributes: [ ['titulo', 'Nombre'], ['resumen', 'Resumen'], ['duracion', 'Duración'], ['trailer', 'Trailer'], ],
@@ -34,7 +34,7 @@ router.get('/:categoria', async (req, res) => {
 
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: `Error al obtener peliculas` });
+        res.status(500).json({ error: `Error al obtener titulos por categoria: ${categoria}` });
     }
 });
 

@@ -15,18 +15,15 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'Tag no encontrado' })
         }
 
-        // tags - tagstitulos - titulos
-
-        //mostrar todos los titulos con este tag
-
         const tagst = await TagsTitulos.findAll({
             include: [{ model: Titulo, attributes: ['titulo'] }, 
                       { model: Tag, attributes: ['nombreTag'] }],
         });
 
         const nombreTag = tagst[0].Tag.nombreTag;
-        // set para que no tenga duplicados
-        // ... para quede array plano
+        // primero mapeo para quedarme con los titulos en un array
+        // creo un set (del map) para que no tenga duplicados
+        // ... para quede array plano 
         const titulos = [...new Set(tagst.map(tt => tt.Titulo.titulo))];
 
         tagsConTitulos = {

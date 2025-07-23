@@ -21,6 +21,7 @@ router.get('/:id', async (req, res) => {
             where: { idTitulo: titulo.id },
         });
 
+        // tags en array
         const tags = tagst.map(r => r.Tag.nombreTag)
 
         tagsDelTitulo = {

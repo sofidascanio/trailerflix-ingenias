@@ -9,12 +9,6 @@ const TagsTitulos = sequelize.define('TagsTitulos', {
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true,
         allowNull: false
     },
-    // idTitulo: {
-    //     type: DataTypes.INTEGER, defaultValue: null
-    // },
-    // idTag: {
-    //     type: DataTypes.INTEGER, defaultValue: null
-    // },
     idTitulo: {
         type: DataTypes.INTEGER,
             references: {
