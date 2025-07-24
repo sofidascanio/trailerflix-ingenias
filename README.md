@@ -69,9 +69,10 @@ DB_PASS= Contraseña de MySQL
 | GET | [/titulos/:id]() | Busqueda de **Titulo** por *id* |
 | GET | [/titulos/reparto/:id]() | Busqueda de ***Reparto*** de un **Titulo** por *id* |
 | GET | [/titulos/categoria/:categoria]() | Busqueda de **Titulos** por ***Categoria*** |
-| GET | [/titulos/resumen/:palabra]() | Listado de **Titulos** cuyo resumen incluya *:palabra*|
+| GET | [/titulos/resumen/:palabra]() | Listado de **Titulos** cuyo resumen incluya *:palabra* |
 | GET | [/titulos/cantidad](s) | **Cantidad** de *Series* y *Peliculas* en Trailerflix |
 | GET | [/titulos/series/:temporadas]() | Listado de **Series** que tengan menos temporadas que el numero indicado por *:temporadas*|
+| GET | [/titulos/nombre/:nombre]() | Listado de **Titulos** cuyo nombre (*titulo*) incluya *:nombre* |
 | GET | [/generos]() | Listado de **Generos** disponibles|
 | GET | [/generos/:id]() | Listado de ***Titulos*** que corresponden al **Genero** indicado por *id* |
 | GET | [/actores]() | Listado de **Actores/Actrices** |
@@ -247,6 +248,49 @@ GET `/titulos/series/3`
 },
 ...
 ```
+--------------------------------
+### Busqueda de Titulo Por Nombre
+Listado de titulos cuyo nombre (titulo) contenga la palabra indicada por parametro `:nombre`, cada titulo con su **id**, **nombre**, **resumen**, **trailer**, **categoria** y **genero**.
+
+```bash
+GET `/titulos/nombre/:nombre`
+```
+
+**Ejemplo:**
+```bash 
+GET `/titulos/resumen/the`
+```
+*Devuelve:*
+```javascript 
+{
+  "ID": 1,
+  "Nombre": "The Mandalorian",
+  "Resumen": "Ambientada tras la caída del Imperio y antes de la aparición de la Primera Orden, la Serie sigue los pasos de un pistolero solitario en las aventuras que protagoniza en los confines de la galaxia, donde no alcanza la autoridad de la Nueva República.",
+  "Trailer": "https://www.youtube.com/embed/aOC8E8z_ifw",
+  "Categorium": {
+    "Categoria": "Serie"
+  },
+  "Genero": {
+    "Genero": "Ciencia Ficción"
+  }
+},
+{
+  "ID": 2,
+  "Nombre": "The Umbrella Academy",
+  "Resumen": "La muerte de su padre reúne a unos hermanos distanciados y con extraordinarios poderes que descubren impactantes secretos y una amenaza que se cierne sobre la humanidad.",
+  "Trailer": "https://www.youtube.com/embed/KHucKOK-Vik",
+  "Categorium": {
+    "Categoria": "Serie"
+  },
+  "Genero": {
+    "Genero": "Ciencia Ficción"
+  }
+},
+...
+...
+```
+
+
 -----
 ----------------------------
 ## Generos

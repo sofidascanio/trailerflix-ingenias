@@ -16,6 +16,7 @@ const getTituloByResumen = require('./titulos/getByResumen.js');
 const getSeriesByTemporadas = require('./titulos/getSeriesByTemporadas.js');
 const getCantidadTitulos = require('./titulos/getCantidadTitulos.js');
 const getByCategoria = require('./titulos/getByCategoria.js');
+const getTituloByNombre = require('./titulos/getTituloByNombre.js');
 
 const getTitulosByTagId = require('./tags/getById.js');
 const getAllTags = require('./tags/getAll.js');
@@ -37,6 +38,7 @@ router.use('/titulos/resumen', getTituloByResumen);
 router.use('/titulos/categoria', getByCategoria);
 router.use('/titulos/cantidad', getCantidadTitulos);
 router.use('/titulos/reparto', getRepartoTitulo);
+router.use('/titulos/nombre', getTituloByNombre);
 router.use('/titulos', getTituloById);
 router.use('/titulos', getAllTitulos);
 

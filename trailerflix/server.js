@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
         '/titulos/resumen/:palabra': "Busqueda de titulos por resumen (que coincida con :palabra)",
         '/titulos/cantidad': "Cantidad de series y peliculas en Trailerflix" ,
         '/titulos/series/:temporadas': "Listado de series con menos temporadas que el numero indicado por :temporadas",
+        '/titulos/nombre/:nombre': "Busqueda de titulos por nombre (que coincida con :nombre)",
         '/generos': "Listado de generos disponibles",
         '/generos/:id': "Listado de titulos que corresponden al genero indicado por ID",
         '/actores': "Listado de actores/actrices",
