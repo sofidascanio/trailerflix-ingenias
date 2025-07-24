@@ -10,7 +10,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node --watch server.js",
-    "build": "echo 'no build needed'",
     "end": "killall -9 node"
   },
   "keywords": [],
