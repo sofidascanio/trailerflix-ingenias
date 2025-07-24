@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
 
         // tags en array
         // me quedo con id y nombre de tag
-        const tags = tagst.map(t => ({ id: t.Tag.id, titulo: t.Tag.nombreTag }));
+        const tags = tagst.map(t => ({ id: t.Tag.id, tag: t.Tag.nombreTag }));
 
         tagsDelTitulo = {
             'Titulo': titulo.titulo,

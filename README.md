@@ -482,15 +482,15 @@ GET `/tags/titulos/45`
   "Tags": [
     {
       "id": 18,
-      "titulo": "Terror"
+      "tag": "Terror"
     },
     {
       "id": 16,
-      "titulo": "Suspenso"
+      "tag": "Suspenso"
     },
     {
       "id": 6,
-      "titulo": "Drama"
+      "tag": "Drama"
     }
   ]
 }
