@@ -15,6 +15,7 @@
         - [Busqueda de Titulo por Resumen](#busqueda-de-titulos-por-resumen)
         - [Cantidad de Series y Peliculas](#cantidad-de-series-y-peliculas)
         - [Listado de Series por Temporada](#listado-de-series-por-cantidad-de-temporadas)
+        - [Busqueda de Titulo por Nombre](#busqueda-de-titulo-por-nombres)
     - [Generos](#generos)
         - [Listado de Generos](#listado-de-generos)
         - [Busqueda de Titulos por Genero](#busqueda-de-titulos-por-genero)
