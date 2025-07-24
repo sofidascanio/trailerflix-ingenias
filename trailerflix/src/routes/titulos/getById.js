@@ -35,6 +35,7 @@ router.get('/:id', async (req, res) => {
         const tituloResultado = {
             'Nombre': titulo.titulo,
             'Resumen': titulo.resumen,
+            'Fecha de Estreno': titulo.fecha_lanzamiento,
             'Genero': genero.nombreGenero,
             'Categoria': categoria.nombreCategoria,
             'Tags': tags

@@ -15,12 +15,12 @@ router.get('/:id', async (req, res) => {
         }
 
         const titulos = await Titulo.findAll({
-            attributes: [ 'titulo', 'id', ],
+            attributes: [ 'titulo', 'id', 'fecha_lanzamiento'],
             where: { idGenero: genero.id },
         });
 
         // mapeo para quedarme solo con los titulos y sus ID en un array 
-        const titulosGeneros = titulos.map(t => ({ id: t.id, titulo: t.titulo }));
+        const titulosGeneros = titulos.map(t => ({ id: t.id, titulo: t.titulo, estreno: t.fecha_lanzamiento}));
 
         titulosDelGenero = {
             'Genero': genero.nombreGenero,

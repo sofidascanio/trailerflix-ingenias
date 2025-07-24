@@ -96,7 +96,7 @@ GET `/titulos`
 
 -----------------
 ### Busqueda de Titulo
-Busqueda de un titulo indicado por *id*, devuelve el **nombre**, **resumen**, **temporadas/duración**(*serie/pelicula*), **genero** y **categoria** del titulo.
+Busqueda de un titulo indicado por *id*, devuelve el **nombre**, **resumen**, **fecha de estreno**, **temporadas/duración**(*serie/pelicula*), **genero** y **categoria** del titulo.
 ``` 
 GET `/titulos/:id`
 ```
@@ -111,6 +111,7 @@ GET `/titulos/5`
 {
   "Nombre": "The Crown",
   "Resumen": "Este drama narra las rivalidades políticas y el romance de la reina Isabel II, así como los sucesos que moldearon la segunda mitad del siglo XX.",
+  "Fecha de Estreno": "2024-01-01",
   "Temporadas": "4",
   "Genero": "Suceso Real",
   "Categoria": "Serie"
@@ -303,7 +304,7 @@ GET `/generos`
 
 ---------------------------
 ### Busqueda de Titulos por Genero
-Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*, cada titulo con su **id** y **nombre**.
+Listado con todos titulos (peliculas/series) que correspondan al genero indicado por *id*, cada titulo con su **id**, **nombre** y **fecha de estreno**.
 ```bash 
 GET `/generos/:id`
 ```
@@ -320,15 +321,18 @@ GET `/generos/8`
   "Titulos": [
     {
       "id": 18,
-      "titulo": "Ava"
+      "titulo": "Ava",
+      "estreno": "2024-01-01"
     },
     {
       "id": 31,
-      "titulo": "Jurassic World"
+      "titulo": "Jurassic World",
+      "estreno": "2024-01-01"
     },
     {
       "id": 75,
-      "titulo": "El Contador"
+      "titulo": "El Contador",
+      "estreno": "2024-01-01"
     },
   ...
   ]
